@@ -46,33 +46,28 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="widget search-widget">
-            <h3>Search</h3>
+            <h3 id="search-title"></h3>
             <span class="search-icon"></span>
             <input type="text" id="json-search" placeholder="">
         </div>
 
         <!-- SOCIAL MEDIA / PROFILE LINKS - Dynamic from config.json -->
         <div class="widget">
-            <h3>Links</h3>
+            <h3 id="links-title"></h3>
             <div id="social-links" class="profile-links">
                 <!-- Dynamic social links from config.json -->
             </div>
         </div>
         
         <div class="widget">
-            <h3>Contact</h3>
-            <div id="json-contact">
-                <p>Email: <span class="json-email"></span></p>
-                <p>Phone: <span class="json-phone"></span></p>
-                <p>Address: <span class="json-address"></span></p>
-                <p>Country: <span class="json-country"></span></p>
-            </div>
+            <h3 id="contact-title"></h3>
+            <div id="json-contact"></div>
         </div>
 
         <div class="widget">
-            <h3>Interests</h3>
+            <h3 id="interests-title"></h3>
             <div id="json-interests">
-                <p class="json-loading">Loading interests...</p>
+                <p class="json-loading"></p>
             </div>
         </div>
     </aside>
@@ -80,8 +75,8 @@
     <!-- MAIN -->
     <main>
         <div class="welcome">
-            <h1 id="welcome-title">Willkommen auf meiner Webseite</h1>
-            <p id="welcome-text">Ich bin Maximilian Fuksik, und dies ist meine persönliche Webseite.</p>
+            <h1 id="welcome-title"></h1>
+            <p id="welcome-text"></p>
         </div>
 
         <section class="about-section" id="about-section-container">
@@ -89,13 +84,13 @@
         </section>
         
         <section class="gallery">
-            <h2 id="gallery-title">Bildergalerie</h2>
+            <h2 id="gallery-title"></h2>
             <div class="gallery-grid" id="gallery-grid">
-                <div class="gallery-item"><img id="gallery-img-1" src="" alt="Bild 1"></div>
-                <div class="gallery-item"><img id="gallery-img-2" src="" alt="Bild 2"></div>
-                <div class="gallery-item"><img id="gallery-img-3" src="" alt="Bild 3"></div>
-                <div class="gallery-item"><img id="gallery-img-4" src="" alt="Bild 4"></div>
-                <div class="gallery-item"><img id="gallery-img-5" src="" alt="Bild 5"></div>
+                <div class="gallery-item"><img id="gallery-img-1" src="" alt="Image 1"></div>
+                <div class="gallery-item"><img id="gallery-img-2" src="" alt="Image 2"></div>
+                <div class="gallery-item"><img id="gallery-img-3" src="" alt="Image 3"></div>
+                <div class="gallery-item"><img id="gallery-img-4" src="" alt="Image 4"></div>
+                <div class="gallery-item"><img id="gallery-img-5" src="" alt="Image 5"></div>
             </div>
         </section>
     </main>
@@ -110,7 +105,6 @@
 
 <script src="assets/js/cv-loader.js"></script>
 <script src="assets/js/script.js"></script>
-
 
 </body>
 </html>

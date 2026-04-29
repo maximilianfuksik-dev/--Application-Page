@@ -2,7 +2,7 @@
   "index": {
     "welcome": {
       "title": "Hallo, ich bin Maximilian",
-      "text": "Früher war ich im Vertrieb. IT-Sicherheit hat mich aber schon immer interessiert. Seit der Umschulung ist dann die Begeisterung für Hardware und Technik dazugekommen. Klingt ungewöhnlich? Vielleicht. Aber es fühlt sich richtig an."
+      "text": "Früher war ich im Vertrieb, doch die IT hat mich schon immer fasziniert. Mit der Umschulung kam dann die Leidenschaft für Hardware und Technik dazu. Klingt ungewöhnlich? Vielleicht. Aber es fühlt sich richtig an."
     },
     "aboutSections": [
       {
@@ -26,20 +26,62 @@
       }
     ],
     "gallery": {
-      "title": "Kleine Auszeit vom Bildschirm",
+      "title": "Einblicke in meine Webpage",
       "images": [
-        "circuit-board-279987_1920.jpg",
-        "switch-6955359_1920.jpg",
-        "",
-        "",
-        ""
+        "Darkmode.png",
+        "Loader.png",
+        "image.png",
+        "Css.png",
+        "HTMLindex.png"
       ]
     }
   },
-"about": {
-  "title": "Über mich",
-  "image1": "watermarked-e2468cd0-22a6-413a-8e14-d082a659f847.jpg",
-  "image2": "",
-  "text": "Geboren in Waldbröl, heute zu Hause in Castrop-Rauxel. Ich trage die bodenständigen Werte Westfalens in mir – und das Ruhrgebiet hat mich geprägt.\n\nMein Weg führte mich durch die Region: von der Automobilausbildung in Ascheberg über Kundenberatung bei Avedo und Kikxxl bis zur Selbstständigkeit bei Tecis, wo ich erste Führungserfahrung sammeln und Vertriebsprojekte leiten durfte.\n\nDort habe ich gelernt, was wirklich zählt: Menschen verstehen, Bedürfnisse erkennen und Lösungen finden – auch wenn es mal nicht nach Plan läuft.\n\nDiese Erfahrung nehme ich jetzt mit in meine neue Welt: die der Programmierung. Meine Umschulung zum Fachinformatiker ist keine Richtungsänderung. Sie ist eine Weiterentwicklung. Ich verbinde Service-Denken mit Code-Kompetenz, um Brücken zu bauen – zwischen Mensch und Technik.\n\nIn der Natur Westfalens, beim konzentrierten Bogenschießen oder beim Gitarrespielen finde ich die Balance, die mich auch beim Programmieren leitet: Geduld, Präzision und den Mut, Neues zu schaffen. Und dann ist da noch die Hardware – Raspberry Pi, Sensoren, kleine Server. Seit der Umschulung hat mich das Basteln gepackt. Auch wenn ich noch am Anfang stehe: Es macht mir richtig Spaß, Dinge selbst zu bauen.\n\nMein Ziel ist klar: Ich will digitale Lösungen gestalten, die nicht nur technisch sauber sind, sondern auch menschlich sinnvoll. Eine Synthese aus westfälischer Bodenständigkeit, digitaler Neugier und dem Blick für Sicherheit – denn das eine geht für mich nicht ohne das andere."
-}
+  "about": {
+    "title": "Über mich",
+    "image1": "watermarked-e2468cd0-22a6-413a-8e14-d082a659f847.jpg",
+    "image2": "",
+    "text": "Geboren in Waldbröl, heute zu Hause in Castrop-Rauxel. Ich trage die bodenständigen Werte Westfalens in mir – und das Ruhrgebiet hat mich geprägt.\n\nMein Weg führte mich durch die Region: von der Automobilausbildung in Ascheberg über Kundenberatung bei Avedo und Kikxxl bis zur Selbstständigkeit bei Tecis, wo ich erste Führungserfahrung sammeln und Vertriebsprojekte leiten durfte.\n\nDort habe ich gelernt, was wirklich zählt: Menschen verstehen, Bedürfnisse erkennen und Lösungen finden – auch wenn es mal nicht nach Plan läuft.\n\nDiese Erfahrung nehme ich jetzt mit in meine neue Welt: die der Programmierung. Meine Umschulung zum Fachinformatiker ist keine Richtungsänderung. Sie ist eine Weiterentwicklung. Ich verbinde Service-Denken mit Code-Kompetenz, um Brücken zu bauen – zwischen Mensch und Technik.\n\nIn der Natur Westfalens, beim konzentrierten Bogenschießen oder beim Gitarrespielen finde ich die Balance, die mich auch beim Programmieren leitet: Geduld, Präzision und den Mut, Neues zu schaffen. Und dann ist da noch die Hardware – Raspberry Pi, Sensoren, kleine Server. Seit der Umschulung hat mich das Basteln gepackt. Auch wenn ich noch am Anfang stehe: Es macht mir richtig Spaß, Dinge selbst zu bauen.\n\nMein Ziel ist klar: Ich will digitale Lösungen gestalten, die nicht nur technisch sauber sind, sondern auch menschlich sinnvoll. Eine Synthese aus westfälischer Bodenständigkeit, digitaler Neugier und dem Blick für Sicherheit – denn das eine geht für mich nicht ohne das andere."
+  },
+  "cvPage": {
+    "searchTitle": "Suche",
+    "linksTitle": "Links",
+    "contactTitle": "Kontakt",
+    "interestsTitle": "Interessen",
+    "documentsTitle": "📄 Meine Dokumente",
+    "documentsSubtitle": "Hier können Sie meinen Lebenslauf und weitere Unterlagen herunterladen oder direkt ansehen.",
+    "workTitle": "📁 Berufserfahrung",
+    "educationTitle": "🎓 Ausbildung & Weiterbildung",
+    "skillsTitle": "⭐ Kenntnisse & Fähigkeiten",
+    "progLangTitle": "🖳 Programmiersprachen",
+    "softskillsTitle": "☕ Softskills",
+    "languagesTitle": "🗣 Sprachen",
+    "otherTitle": "➯ Sonstiges",
+    "drivingLicense": "🚗 Führerschein",
+    "loadingText": "Lade Daten...",
+    "noDataText": "Keine Daten vorhanden",
+    "footerText": "Impressum | Datenschutz | Kontakt | © {year} Maximilian Fuksik. Alle Rechte vorbehalten."
+  },
+  "skillsData": {
+    "programmingLanguages": [
+      { "name": "HTML & CSS", "level": 65 },
+      { "name": "JavaScript", "level": 45 },
+      { "name": "Python", "level": 45 },
+      { "name": "Java", "level": 15 },
+      { "name": "SQL", "level": 65 }
+    ],
+    "softskills": [
+      { "name": "Teamfähigkeit", "level": 95 },
+      { "name": "Problemlösung", "level": 85 },
+      { "name": "Kreativität", "level": 75 }
+    ],
+    "languages": [
+      { "name": "Deutsch (Muttersprache)", "level": 100 },
+      { "name": "Englisch (B2)", "level": 80 },
+      { "name": "Spanisch (Grundlagen)", "level": 10 }
+    ],
+    "other": [
+      { "name": "Microsoft Office", "level": 75 },
+      { "name": "Führerschein Klasse B", "level": 100 }
+    ]
+  }
 }

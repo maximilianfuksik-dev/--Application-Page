@@ -75,9 +75,7 @@ document.addEventListener('keydown', function(event) {
 
 // ==================== DARK MODE ====================
 
-// Wait for DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", function() {
-    // Find the toggle checkbox - could be anywhere in the DOM
     const checkbox = document.getElementById('toggle-checkbox');
     const themeStylesheet = document.getElementById('light');
     

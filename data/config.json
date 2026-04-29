@@ -39,6 +39,11 @@
         "name": "LinkedIn",
         "url": "https://linkedin.com/in/dein-profil",
         "icon": "💼"
+      },
+      {
+        "name": "Steam",
+        "url": "https://steamcommunity.com/profiles/76561198119753169",
+        "icon": "🕹️"
       }
     ]
   }

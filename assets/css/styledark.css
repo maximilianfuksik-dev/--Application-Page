@@ -1301,6 +1301,104 @@ footer p a:hover {
     gap: 10px;
 }
 
+/* ============================================
+   SOCIAL LINKS STYLES - angepasst an deine Struktur
+   ============================================ */
+
+/* Container für die Social Links */
+.profile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+/* Jeder einzelne Social Link */
+.profile-links a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--light-bg);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Überlauf-Effekt beim Hover */
+.profile-links a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.05);
+    transition: width 0.3s ease;
+    z-index: 0;
+}
+
+.profile-links a:hover::before {
+    width: 100%;
+}
+
+.profile-links a:hover {
+    transform: translateX(5px);
+    border-color: var(--primary-color);
+}
+
+/* Icon innerhalb des Links */
+.profile-links a .social-icon {
+    font-size: 1.5rem;
+    min-width: 32px;
+    text-align: center;
+    z-index: 1;
+}
+
+/* Text / Name des Links */
+.profile-links a .social-name {
+    flex: 1;
+    z-index: 1;
+}
+
+/* ===== Individuelle Hover-Farben für verschiedene Plattformen ===== */
+.profile-links a[data-platform="github"]:hover {
+    border-color: #333;
+    background: #333;
+    color: white;
+}
+
+.profile-links a[data-platform="linkedin"]:hover {
+    border-color: #0077b5;
+    background: #0077b5;
+    color: white;
+}
+
+.profile-links a[data-platform="email"]:hover {
+    border-color: #ea4335;
+    background: #ea4335;
+    color: white;
+}
+
+.profile-links a[data-platform="x"]:hover,
+.profile-links a[data-platform="twitter"]:hover {
+    border-color: #000;
+    background: #000;
+    color: white;
+}
+
+/* Fallback für andere Plattformen */
+.profile-links a:hover {
+    background: var(--primary-color);
+    color: var(--text-on-dark);
+    border-color: var(--primary-color);
+}
+
 /* Responsive Design für JSON Sections */
 @media (max-width: 768px) {
     .work-item,

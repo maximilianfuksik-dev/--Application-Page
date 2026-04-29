@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link id="light" rel="stylesheet" href="assets/css/stylesheet.css">
-    <title>Maximilian Fuksik</title>
+    <title>Maximilian Fuksik - Zertifikate</title>
 </head>
 <body>
 <!-- HEAD -->
@@ -41,137 +41,61 @@
     </div>
 </header>
 
-<!-- EIN Container für alles -->
+<!-- CONTAINER for everything -->
 <div class="container">
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="widget search-widget">
-            <h3>Search</h3>
+            <h3 id="search-title"></h3>
             <span class="search-icon"></span>
             <input type="text" id="json-search" placeholder="">
         </div>
 
         <!-- SOCIAL MEDIA / PROFILE LINKS - Dynamic from config.json -->
         <div class="widget">
-            <h3>Links</h3>
+            <h3 id="links-title"></h3>
             <div id="social-links" class="profile-links">
                 <!-- Dynamic social links from config.json -->
             </div>
         </div>
         
         <div class="widget">
-            <h3>Contact</h3>
-            <div id="json-contact">
-                <p>Email: <span class="json-email"></span></p>
-                <p>Phone: <span class="json-phone"></span></p>
-                <p>Address: <span class="json-address"></span></p>
-                <p>Country: <span class="json-country"></span></p>
-            </div>
+            <h3 id="contact-title"></h3>
+            <div id="json-contact"></div>
         </div>
 
         <div class="widget">
-            <h3>Interests</h3>
+            <h3 id="interests-title"></h3>
             <div id="json-interests">
-                <p class="json-loading">Loading interests...</p>
+                <p class="json-loading"></p>
             </div>
         </div>
     </aside>
-<!--MAIN Content-->
 
-<!-- Zertifikate -->
-<div class="resume-documents">
-
+    <!-- Zertifikate -->
+    <div class="resume-documents">
         <div class="documents-section">
-            <h3>Zertifikate</h3>
-
-            <!-- Grid für alle Zertifikate -->
-            <div class="documents-grid">
-
-                <div class="document-card">
-                    <div class="document-icon">📄</div>
-                    <div class="document-info">
-                        <h4>Zertifikat HTML</h4>
-                        <p>Hochgeladen am: 14.05.2025</p>
-                        <div class="document-actions">
-                            <button class="btn" onclick="openModal(' docs/cert/certificate HTML.pdf')">Ansehen</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="document-card">
-                    <div class="document-icon">📄</div>
-                    <div class="document-info">
-                        <h4>Zertifikat CSS</h4>
-                        <p>Hochgeladen am: 14.05.2025</p>
-                        <div class="document-actions">
-                            <button class="btn" onclick="openModal('docs/cert/certificate CSS.pdf')">Ansehen</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="document-card">
-                    <div class="document-icon">📄</div>
-                    <div class="document-info">
-                        <h4>Zertifikat Java Script</h4>
-                        <p>Hochgeladen am: 14.05.2025</p>
-                        <div class="document-actions">
-                            <button class="btn" onclick="openModal(' docs/cert/certificate Java Script.pdf')">Ansehen</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="document-card">
-                    <div class="document-icon">📄</div>
-                    <div class="document-info">
-                        <h4>Zertifikat SQL</h4>
-                        <p>Hochgeladen am: 29.08.2025</p>
-                        <div class="document-actions">
-                            <button class="btn" onclick="openModal(' docs/cert/certificate SQL.pdf')">Ansehen</button>
-                        </div>
-                    </div>
-                </div>
-                                
-                <div class="document-card">
-                    <div class="document-icon">📄</div>
-                    <div class="document-info">
-                        <h4>Zertifikat Python </h4>
-                        <p>Hochgeladen am: 13.08.2025</p>
-                        <div class="document-actions">
-                            <button class="btn" onclick="openModal(' docs/cert/certificate Python.pdf')">Ansehen</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="document-card">
-                    <div class="document-icon">📄</div>
-                    <div class="document-info">
-                        <h4>Zertifikat Python Development </h4>
-                        <p>Hochgeladen am: 01.09.2025</p>
-                        <div class="document-actions">
-                            <button class="btn" onclick="openModal(' docs/cert/Maximilian-Fuksik Python Development.pdf')">Ansehen</button>
-                        </div>
-                    </div>
-                </div>
+            <h3 id="documents-title"></h3>
+            
+            <!-- Grid fuer alle Zertifikate -->
+            <div class="documents-grid" id="documents-grid">
+                <p class="json-loading"></p>
             </div>
         </div>
 
-<!-- Bereich für die Anzeige -->
-            <div id="pdf-modal" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closeModal()">&times;</span>
-                    <iframe id="modal-frame" src="" width="100%" height="600px"></iframe>
-                </div>
-            </div> 
-        </div>
+        <!-- Bereich fuer die Anzeige -->
+        <div id="pdf-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <iframe id="modal-frame" src="" width="100%" height="600px"></iframe>
+            </div>
+        </div> 
     </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
-    <p>
-        <a href="/legal/legalnotice.html">Impressum</a> | 
-        <a href="/legal/privacypolicy.html">Datenschutz</a> | 
-        <a href="contact.html">Kontakt</a> | 
-        © 2025 Maximilian Fuksik. Alle Rechte vorbehalten.
-    </p>
+    <p id="footer-content"></p>
 </footer>
 
 <script src="assets/js/cv-loader.js"></script>

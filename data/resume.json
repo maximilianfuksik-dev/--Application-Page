@@ -60,15 +60,15 @@
       ]
     },
     {
-      "position": "Selbständiger Handelsvertreter der Tecis AG",
+      "position": "Selbständiger Handelsvertreter",
       "company": "Tecis AG",
       "location": "Dortmund / Oberhausen",
       "period": "02/2021 - 03/2023",
       "responsibilities": [
         "Beratung und Betreuung von Privat- und Firmenkunden",
-        "Entwicklung maßgeschneiderter Finanzkonzepte (Vorsorge, Versicherungen, Investments)",
-        "Führungsverantwortung: Leitung eines kleinen Teams (2 Mitarbeiter)",
-        "Projektmanagement: Umsetzung von Vertriebskampagnen und Kundenevents"
+        "Entwicklung maßgeschneiderter Finanzkonzepte",
+        "Führungsverantwortung: Leitung eines kleinen Teams",
+        "Projektmanagement: Umsetzung von Vertriebskampagnen"
       ]
     },
     {
@@ -77,69 +77,13 @@
       "location": "Ascheberg",
       "period": "08/2019 - 02/2021",
       "responsibilities": [
-        "Strukturierte Auslieferung und Instandhaltung von Miet- und Verkaufsfahrzeugen",
+        "Strukturierte Auslieferung von Miet- und Verkaufsfahrzeugen",
         "Verwaltung und Dokumentation des Fahrzeugbestands",
         "Erstellung von Angeboten und Rechnungen",
-        "Kundenbetreuung bei Service- und Garantieleistungen",
-        "Durchführung von buchhalterischen Verwaltungsarbeiten"
+        "Kundenbetreuung bei Service- und Garantieleistungen"
       ]
     }
   ],
-  "skills": {
-    "languages": [
-      {
-        "language": "Deutsch",
-        "level": "gut"
-      },
-      {
-        "language": "Englisch",
-        "level": "gut"
-      }
-    ],
-    "software": [
-      {
-        "name": "MS Word",
-        "level": "gut"
-      },
-      {
-        "name": "MS Excel",
-        "level": "gut"
-      },
-      {
-        "name": "MS Outlook",
-        "level": "gut"
-      },
-      {
-        "name": "Python",
-        "level": "Basic"
-      },
-      {
-        "name": "JavaScript",
-        "level": "Basic"
-      },
-      {
-        "name": "HTML & CSS",
-        "level": "Basic"
-      },
-      {
-        "name": "MySQL",
-        "level": "Basic"
-      },
-      {
-        "name": "Java",
-        "level": "Basic"
-      }
-    ],
-    "drivingLicense": "Klasse B",
-    "abilities": [
-      "Zuverlässigkeit",
-      "Organisation",
-      "Flexibilität",
-      "Teamfähigkeit",
-      "Zeitmanagement",
-      "Lernbereitschaft"
-    ]
-  },
   "education": [
     {
       "program": "Umschulung Fachinformatiker Anwendungsentwicklung",
@@ -162,12 +106,37 @@
       "period": "08/2012 - 06/2016"
     }
   ],
+  "skills": {
+    "languages": [
+      { "language": "Deutsch", "level": "Muttersprache" },
+      { "language": "Englisch", "level": "B2" }
+    ],
+    "software": [
+      { "name": "MS Word", "level": "gut" },
+      { "name": "MS Excel", "level": "gut" },
+      { "name": "MS Outlook", "level": "gut" },
+      { "name": "Python", "level": "Grundlagen" },
+      { "name": "JavaScript", "level": "Grundlagen" },
+      { "name": "HTML & CSS", "level": "Grundlagen" },
+      { "name": "MySQL", "level": "Grundlagen" },
+      { "name": "Java", "level": "Grundlagen" }
+    ],
+    "drivingLicense": "Klasse B",
+    "abilities": [
+      "Zuverlässigkeit",
+      "Organisation",
+      "Flexibilität",
+      "Teamfähigkeit",
+      "Zeitmanagement",
+      "Lernbereitschaft"
+    ]
+  },
   "interests": [
     "Reisen",
     "Natur",
     "Spazieren gehen",
     "Hunde",
-    "Bogen Schießen",
+    "Bogenschießen",
     "Gitarre spielen",
     "Videospiele"
   ]

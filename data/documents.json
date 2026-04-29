@@ -1,0 +1,81 @@
+{
+  "documents": [
+    {
+      "id": "cv",
+      "title": "Lebenslauf",
+      "icon": "📄",
+      "description": "Aktueller Lebenslauf mit allen beruflichen Stationen",
+      "path": "docs/Lebenslauf.pdf",
+      "uploadDate": "12.05.2025",
+      "viewable": true,
+      "downloadable": true,
+      "showOnCV": true
+    },
+    {
+      "id": "cert-html",
+      "title": "Zertifikat HTML",
+      "icon": "🌐",
+      "description": "Grundlagen Zertifikat in HTML",
+      "path": "docs/cert/certificate HTML.pdf",
+      "uploadDate": "14.05.2025",
+      "viewable": true,
+      "downloadable": true,
+      "showOnCV": false
+    },
+    {
+      "id": "cert-css",
+      "title": "Zertifikat CSS",
+      "icon": "🎨",
+      "description": "Grundlagen Zertifikat in CSS",
+      "path": "docs/cert/certificate CSS.pdf",
+      "uploadDate": "14.05.2025",
+      "viewable": true,
+      "downloadable": true,
+      "showOnCV": false
+    },
+    {
+      "id": "cert-js",
+      "title": "Zertifikat JavaScript",
+      "icon": "🟨",
+      "description": "Grundlagen Zertifikat in JavaScript",
+      "path": "docs/cert/certificate Java Script.pdf",
+      "uploadDate": "14.05.2025",
+      "viewable": true,
+      "downloadable": true,
+      "showOnCV": false
+    },
+    {
+      "id": "cert-sql",
+      "title": "Zertifikat SQL",
+      "icon": "🗄️",
+      "description": "Grundlagen Zertifikat in SQL",
+      "path": "docs/cert/certificate SQL.pdf",
+      "uploadDate": "29.08.2025",
+      "viewable": true,
+      "downloadable": true,
+      "showOnCV": false
+    },
+    {
+      "id": "cert-python",
+      "title": "Zertifikat Python",
+      "icon": "🐍",
+      "description": "Grundlagen Zertifikat in Python",
+      "path": "docs/cert/certificate Python.pdf",
+      "uploadDate": "13.08.2025",
+      "viewable": true,
+      "downloadable": true,
+      "showOnCV": false
+    },
+    {
+      "id": "cert-python-dev",
+      "title": "Zertifikat Python Development",
+      "icon": "🐍",
+      "description": "Fortgeschrittenes Python Development Zertifikat",
+      "path": "docs/cert/Maximilian-Fuksik Python Development.pdf",
+      "uploadDate": "01.09.2025",
+      "viewable": true,
+      "downloadable": true,
+      "showOnCV": false
+    }
+  ]
+}

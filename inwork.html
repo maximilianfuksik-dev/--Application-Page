@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="light" rel="stylesheet" href="assets/css/stylesheet.css">
+    <title>Maximilian Fuksik - Lebenslauf</title>
+</head>
+<body>
+<!-- HEADER -->
+<header>
+    <img src="assets/images/trees-8563877_1920.jpg" class="header-image" alt="Header image with trees">
+    <div class="header-content">
+        <div class="icon"></div>
+        <div id="nav">
+            <nav>
+                <ul id="nav-links">
+                    <!-- Dynamic navigation from config.json -->
+                </ul>
+                <li class="dark-mode-item">
+                    <span id="dayNight"> 🔆 | ☾ </span>
+                    <label class="darkMode" for="toggle-checkbox">
+                        <input type="checkbox" id="toggle-checkbox">
+                        <span class="d-btn"></span>
+                    </label>
+                </li>
+            </nav>
+        </div>
+    </div>
+    <div id="clock">
+        <div class="time">
+            <span id="hours"></span><span class="separator">:</span>
+            <span id="minutes"></span><span class="separator">:</span>
+            <span id="seconds"></span>
+        </div>
+        <div id="date"></div>
+    </div>
+</header>
+
+<!-- HAUPT-CONTAINER -->
+<div class="container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="widget search-widget">
+            <h3>Suche</h3>
+            <span class="search-icon">🔍</span>
+            <input type="text" id="json-search" placeholder="Suchen...">
+        </div>
+
+        <div class="widget">
+            <h3>Links</h3>
+            <div id="social-links" class="profile-links">
+                <!-- Dynamic social links from config.json -->
+            </div>
+        </div>
+        
+        <div class="widget">
+            <h3>Kontakt</h3>
+            <div id="json-contact">
+                <p>📧 <span class="json-email"></span></p>
+                <p>📞 <span class="json-phone"></span></p>
+                <p>📍 <span class="json-address"></span></p>
+                <p>🌍 <span class="json-country"></span></p>
+            </div>
+        </div>
+
+        <div class="widget">
+            <h3>Interessen</h3>
+            <div id="json-interests">
+                <p class="json-loading">Lade Interessen...</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- CV-HAUPTINHALT -->
+    <main class="cv-main">
+        <!-- DOKUMENTE -->
+        <div class="resume-documents">
+            <h3>📄 Meine Dokumente</h3>
+            <p>Hier können Sie meinen Lebenslauf und weitere Unterlagen herunterladen oder direkt ansehen.</p>
+            <div class="documents-grid">
+                <div class="document-card">
+                    <div class="document-icon">📄</div>
+                    <div class="document-info">
+                        <h4>Lebenslauf.pdf</h4>
+                        <p>Hochgeladen am: 12.05.2025</p>
+                        <div class="document-actions">
+                            <button class="btn" onclick="openModal('docs/Lebenslauf.pdf')">Ansehen</button>
+                            <a href="docs/Lebenslauf.pdf" download>
+                                <button class="btn">Herunterladen</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PDF MODAL -->
+        <div id="pdf-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <iframe id="modal-frame" src="" width="100%" height="600px"></iframe>
+            </div>
+        </div>
+
+        <!-- BERUFSERFAHRUNG aus JSON -->
+        <section class="work-experience-json">
+            <h2>📁 Berufserfahrung</h2>
+            <div id="json-work-experience">
+                <p class="json-loading">Lade Berufserfahrung...</p>
+            </div>
+        </section>
+
+        <!-- AUSBILDUNG aus JSON -->
+        <section class="education-json">
+            <h2>🎓 Ausbildung & Weiterbildung</h2>
+            <div id="json-education">
+                <p class="json-loading">Lade Ausbildung...</p>
+            </div>
+        </section>
+
+        <!-- FÄHIGKEITEN aus JSON -->
+        <section class="skills-json">
+            <h2>🛠️ Kenntnisse & Fähigkeiten</h2>
+            <div id="json-skills">
+                <p class="json-loading">Lade Fähigkeiten...</p>
+            </div>
+        </section>
+
+        <!-- MANUELLE SKILLS (Fallback/Ergänzung) -->
+        <section class="skills-section">
+            <h2>⭐ Weitere Kompetenzen</h2>
+
+            <div class="skill-category">
+                <h3>🖳 Programmiersprachen</h3>
+                <div class="skills-grid">
+                    <div class="skill"><span>HTML & CSS</span><div class="skill-bar"><div class="skill-progress" data-level="65"></div></div></div>
+                    <div class="skill"><span>JavaScript</span><div class="skill-bar"><div class="skill-progress" data-level="45"></div></div></div>
+                    <div class="skill"><span>Python</span><div class="skill-bar"><div class="skill-progress" data-level="45"></div></div></div>
+                    <div class="skill"><span>Java</span><div class="skill-bar"><div class="skill-progress" data-level="15"></div></div></div>
+                    <div class="skill"><span>SQL</span><div class="skill-bar"><div class="skill-progress" data-level="65"></div></div></div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>☕ Softskills</h3>
+                <div class="skills-grid">
+                    <div class="skill"><span>Teamfähigkeit</span><div class="skill-bar"><div class="skill-progress" data-level="95"></div></div></div>
+                    <div class="skill"><span>Problemlösung</span><div class="skill-bar"><div class="skill-progress" data-level="85"></div></div></div>
+                    <div class="skill"><span>Kreativität</span><div class="skill-bar"><div class="skill-progress" data-level="75"></div></div></div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>🗣 Sprachen</h3>
+                <div class="skills-grid">
+                    <div class="skill"><span>Deutsch (Muttersprache)</span><div class="skill-bar"><div class="skill-progress" data-level="100"></div></div></div>
+                    <div class="skill"><span>Englisch (B2)</span><div class="skill-bar"><div class="skill-progress" data-level="80"></div></div></div>
+                    <div class="skill"><span>Spanisch (Grundlagen)</span><div class="skill-bar"><div class="skill-progress" data-level="10"></div></div></div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>➯ Sonstiges</h3>
+                <div class="skills-grid">
+                    <div class="skill"><span>Microsoft Office</span><div class="skill-bar"><div class="skill-progress" data-level="75"></div></div></div>
+                    <div class="skill"><span>Führerschein Klasse B</span><div class="skill-bar"><div class="skill-progress" data-level="100"></div></div></div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>
+        <a href="legal/legalnotice.html">Impressum</a> | 
+        <a href="legal/privacypolicy.html">Datenschutz</a> | 
+        <a href="contact.html">Kontakt</a> | 
+        © 2025 Maximilian Fuksik. Alle Rechte vorbehalten.
+    </p>
+</footer>
+
+<script src="assets/js/cv-loader.js"></script>
+<script src="assets/js/script.js"></script>
+</body>
+</html>

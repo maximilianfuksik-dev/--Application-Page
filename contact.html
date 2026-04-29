@@ -3,138 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link id="light" rel="stylesheet" href="stylesheet.css">
-    <title>Maximilian Fuksik</title>
+    <link id="light" rel="stylesheet" href="assets/css/stylesheet.css">
+    <title>Maximilian Fuksik - Kontakt</title>
 </head>
 <body>
 <!-- HEAD -->
-        <header>
-            <img src="pic/trees-8563877_1920.jpg" class="header-image" alt="Header Bild mit Bäumen">
-            <div class="header-content">
-                <div class="icon"></div>
-<!-- Navigations-Bar--> 
-                <div id="nav">
-                    <nav>
-                        <ul>
-                            <li><a href="index.html"> 🏠︎ Home</a></li>
-                            <li><a href="about.html"> 𓂃🖊 About</a></li>
-                            <li><a href="cv.html"> 🇨🇻 Lebenslauf</a></li>      
-                            <li><a href="certificate.html"> 🗐 Zertifikate</a></li>    
-                            <li><a href="project.html"> 🗒 Projekte</a></li>    
-                            <li><a href="contact.html"> ✉ Kontakt</a></li>   
-                            <li><a href="weiteres.html"> » Weiteres</a></li>
-                            <li><a href="#"> 🛠 </a></li>
-                            <!-- Dark Mode als Listenelement -->
-                            <li class="dark-mode-item">
-                                <span id="dayNight"> 🔆 | ☾ </span>
-                                <label class="darkMode" for="toggle-checkbox">
-                                    <input type="checkbox" id="toggle-checkbox">
-                                    <span class="d-btn"></span>
-                                </label>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-<!-- Clock -->
-            <div id="clock">
-                <div class="time">
-                    <span id="hours"></span><span class="separator">:</span>
-                    <span id="minutes"></span><span class="separator">:</span>
-                    <span id="seconds"></span>
-                </div>
-                <div id="date"></div>
-            </div>
-        </header>
+<header>
+    <img src="assets/images/trees-8563877_1920.jpg" class="header-image" alt="Header image with trees">
+    <div class="header-content">
+        <div class="icon"></div>
+        <div id="nav">
+            <nav>
+                <ul id="nav-links"></ul>
+                <li class="dark-mode-item">
+                    <span id="dayNight"> 🔆 | ☾ </span>
+                    <label class="darkMode" for="toggle-checkbox">
+                        <input type="checkbox" id="toggle-checkbox">
+                        <span class="d-btn"></span>
+                    </label>
+                </li>
+            </nav>
+        </div>
+    </div>
+    <div id="clock">
+        <div class="time">
+            <span id="hours"></span><span class="separator">:</span>
+            <span id="minutes"></span><span class="separator">:</span>
+            <span id="seconds"></span>
+        </div>
+        <div id="date"></div>
+    </div>
+</header>
 
-<!-- EIN Container für alles -->
 <div class="container">
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="widget search-widget">
-            <h3>Suchenliste</h3>
-            <span class="search-icon"></span>
-            <input type="text" placeholder="Suchen..." id="json-search">
+            <h3 id="search-title"></h3>
+            <span class="search-icon">🔍</span>
+            <input type="text" id="json-search" placeholder="">
         </div>
 
         <div class="widget">
-            <h3>Kontaktinfo</h3>
-            <div id="json-contact">
-                <p>📧 Email: <span class="json-email"></span></p>
-                <p>📞 Tel: <span class="json-phone"></span></p>
-                <p>📍 Adresse: <span class="json-address"></span></p>
-                <p> 🌎 Land: <span class="json-country"></span></p>
-            </div>
+            <h3 id="links-title"></h3>
+            <div id="social-links" class="profile-links"></div>
+        </div>
+        
+        <div class="widget">
+            <h3 id="contact-title"></h3>
+            <div id="json-contact"></div>
         </div>
 
-        <!-- SOCIAL MEDIA / PROFIL LINKS -->
         <div class="widget">
-            <h3>Links</h3>
-            <div class="profile-links">
-                <a href="https://github.com/maximilianfuksik-dev" target="_blank" class="profile-link">
-                    <span class="profile-icon">🐙</span>
-                    GitHub
-                </a>
-                <br>
-                <a href="https://linkedin.com/in/DeinLinkedIn" target="_blank" class="profile-link">
-                    <span class="profile-icon">💼</span>
-                    LinkedIn
-                </a>
+            <h3 id="interests-title"></h3>
+            <div id="json-interests">
+                <p class="json-loading"></p>
             </div>
-            <br>
+        </div>
     </aside>
-<!-- MAIN CONTENT -->
-        <main class="content">
-            <h2>Dokumente</h2>
-            
-            <div class="upload-section">
-                <h3>Dokumente hochladen</h3>
-                <div class="upload-area">
-                    <div class="upload-icon">📄</div>
-                    <p>Ziehen Sie Ihre Dokumente hierher oder klicken Sie, um sie auszuwählen</p>
-                    <input type="file" id="file-upload" style="display: none;">
-                    <label for="file-upload" class="btn">Datei auswählen</label>
-                </div>
-            </div>
 
-            <div class="contact-section">
-                <h3>Kontaktformular</h3>
-                <form id="contact-form">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">E-Mail</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="subject">Betreff</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Nachricht</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn">Nachricht senden</button>
-                </form>
+    <!-- MAIN CONTENT - WORK IN PROGRESS -->
+    <main class="content">
+        <div class="wip-container">
+            <h2>📧 Kontakt</h2>
+            <div class="wip-box">
+                <div class="wip-icon">🚧</div>
+                <h3>Work in Progress</h3>
+                <p>Diese Seite befindet sich noch im Aufbau.</p>
+                <p>Bis dahin erreichst du mich per E-Mail:</p>
+                <p><strong>maximilianfuksik@gmail.com</strong></p>
+                <hr>
+                <p>📞 Telefon: <strong>01516 1859480</strong></p>
             </div>
         </div>
-<!--Footer-->
+    </main>
+</div>
+
+<!-- FOOTER -->
 <footer>
-    <p>
-        <a href="/legal/legalnotice.html">Impressum</a> | 
-        <a href="/legal/privacypolicy.html">Datenschutz</a> | 
-        <a href="contact.html">Kontakt</a> | 
-        © 2025 Maximilian Fuksik. Alle Rechte vorbehalten.
-    </p>
+    <p id="footer-content"></p>
 </footer>
 
-<script src="/assets/script.js"></script>
-<script src="/assets/cv-loader.js"></script>
+<script src="assets/js/cv-loader.js"></script>
+<script src="assets/js/script.js"></script>
+
 </body>
 </html>

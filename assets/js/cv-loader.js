@@ -1,14 +1,13 @@
 // ============================================
 // cv-loader.js - Data loading module
-// Loads JSON files and fills page content
-// NO UI functions (clock, modal, dark mode, skill bars)
+// All texts from JSON for multi-language support
 // ============================================
 
 // Global data container
 let siteData = {
     resume: null,
     pageContent: null,
-    certificates: null,
+    documents: null,
     projects: null,
     config: null
 };
@@ -21,7 +20,7 @@ async function loadAllJSON() {
     const files = {
         resume: 'data/resume.json',
         pageContent: 'data/pageContent.json',
-        certificates: 'data/certificates.json',
+        documents: 'data/documents.json',
         projects: 'data/projects.json',
         config: 'data/config.json'
     };
@@ -72,24 +71,23 @@ function renderNavigation() {
     if (!navContainer) return;
     
     const navItems = [
-        { name: "Home", key: "home", icon: "🏠︎" },
-        { name: "About", key: "about", icon: "𓂃🖊" },
-        { name: "Lebenslauf", key: "cv", icon: "🇨🇻" },
-        { name: "Zertifikate", key: "certificates", icon: "🗐" },
-        { name: "Projekte", key: "projects", icon: "🗒" },
-        { name: "Kontakt", key: "contact", icon: "✉" },
-        { name: "Weiteres", key: "weiteres", icon: "»" }
+        { name: " 🏠︎ Home", key: "home", icon: "" },
+        { name: " 𓂃🖊 About", key: "about", icon: "" },
+        { name: "CV", key: "cv", icon: "" },
+        { name: " 🗐 Certificates", key: "certificates", icon: "" },
+        { name: " 🗒 Projects", key: "projects", icon: "" },
+        { name: " ✉ Contact", key: "contact", icon: "" }
+        
     ];
     
     let html = '';
     navItems.forEach(item => {
         const path = config.navigation[item.key];
         if (path) {
-            html += `<li><a href="${path}"> ${item.icon} ${item.name}</a></li>`;
+            html += `<li><a href="${path}">${item.name}</a></li>`;
         }
     });
     
-    // FIXED: Removed dark mode toggle from here - now only in HTML static
     navContainer.innerHTML = html;
     console.log("Navigation rendered");
 }
@@ -105,11 +103,10 @@ function renderSocialLinks() {
     config.sidebar.socialLinks.forEach(link => {
         const icon = link.icon || (link.name === 'GitHub' ? '🐙' : '💼');
         html += `
-            <a href="${link.url}" target="_blank" class="profile-link">
-                <span class="profile-icon">${icon}</span>
-                ${link.name}
+            <a href="${link.url}" target="_blank" data-platform="${link.name.toLowerCase()}">
+                <span class="social-icon">${icon}</span>
+                <span class="social-name">${link.name}</span>
             </a>
-            <br>
         `;
     });
     
@@ -119,42 +116,84 @@ function renderSocialLinks() {
 
 function renderFooter() {
     const config = siteData.config;
-    if (!config?.footer) return;
-    
-    const container = document.getElementById('footer-links');
+    const container = document.getElementById('footer-content') || document.getElementById('footer-links');
     if (!container) return;
     
     const currentYear = new Date().getFullYear();
     
-    let html = '';
-    if (config.footer.impressum) html += `<a href="${config.footer.impressum}">Impressum</a> | `;
-    if (config.footer.datenschutz) html += `<a href="${config.footer.datenschutz}">Datenschutz</a> | `;
-    if (config.footer.contact) html += `<a href="${config.footer.contact}">Kontakt</a> | `;
-    html += `© ${currentYear} Maximilian Fuksik. Alle Rechte vorbehalten.`;
-    
-    container.innerHTML = html;
+    if (config?.footer) {
+        let html = '';
+        if (config.footer.impressum) html += `<a href="${config.footer.impressum}">Impressum</a> | `;
+        if (config.footer.datenschutz) html += `<a href="${config.footer.datenschutz}">Datenschutz</a> | `;
+        if (config.footer.contact) html += `<a href="${config.footer.contact}">Kontakt</a> | `;
+        html += `© ${currentYear} Maximilian Fuksik. Alle Rechte vorbehalten.`;
+        container.innerHTML = html;
+    } else {
+        container.innerHTML = `© ${currentYear} Maximilian Fuksik. Alle Rechte vorbehalten.`;
+    }
     console.log("Footer rendered");
 }
 
 function renderSearchPlaceholder() {
     const config = siteData.config;
+    const pageContent = siteData.pageContent?.cvPage;
     const searchInput = document.getElementById('json-search');
     if (!searchInput) return;
-    searchInput.placeholder = config?.sidebar?.searchPlaceholder || "Search...";
+    searchInput.placeholder = pageContent?.searchPlaceholder || config?.sidebar?.searchPlaceholder || "Search...";
+}
+
+function renderPageTexts() {
+    const texts = siteData.pageContent?.cvPage;
+    if (!texts) return;
+    
+    setText('#search-title', texts.searchTitle);
+    setText('#links-title', texts.linksTitle);
+    setText('#contact-title', texts.contactTitle);
+    setText('#interests-title', texts.interestsTitle);
+    setText('#documents-title', texts.documentsTitle);
+    setText('#documents-subtitle', texts.documentsSubtitle);
+    setText('#work-title', texts.workTitle);
+    setText('#education-title', texts.educationTitle);
+    setText('#skills-json-title', texts.skillsJsonTitle);
+    setText('#skills-title', texts.skillsTitle);
+    setText('#prog-lang-title', texts.progLangTitle);
+    setText('#softskills-title', texts.softskillsTitle);
+    setText('#languages-title', texts.languagesTitle);
+    setText('#other-title', texts.otherTitle);
+    setText('#gallery-title', texts.galleryTitle);
+    setText('#projects-title', texts.projectsTitle);
+    setText('#upload-title', texts.uploadTitle);
+    setText('#upload-text', texts.uploadText);
+    setText('#upload-btn', texts.uploadBtn);
+    setText('#form-title', texts.formTitle);
+    setText('#label-name', texts.labelName);
+    setText('#label-email', texts.labelEmail);
+    setText('#label-subject', texts.labelSubject);
+    setText('#label-message', texts.labelMessage);
+    setText('#submit-btn', texts.submitBtn);
+    
+    document.querySelectorAll('.json-loading').forEach(el => {
+        if (el.textContent === '' || el.textContent === 'Loading...') {
+            el.textContent = texts.loadingText || 'Loading...';
+        }
+    });
 }
 
 function renderContactInfo() {
     const info = siteData.resume?.personalInfo;
-    if (!info) return;
-    
     const container = document.getElementById('json-contact');
     if (!container) return;
     
+    if (!info) {
+        container.innerHTML = '<p>No contact information available</p>';
+        return;
+    }
+    
     container.innerHTML = `
-        <p>📧 Email: <span class="json-email">${escapeHtml(info.email)}</span></p>
-        <p>📞 Tel: <span class="json-phone">${escapeHtml(info.phone)}</span></p>
-        <p>📍 Adresse: <span class="json-address">${escapeHtml(info.address?.street || '')}, ${escapeHtml(info.address?.city || '')}</span></p>
-        <p>🌎 Land: <span class="json-country">${escapeHtml(info.address?.country || '')}</span></p>
+        <p>Email: <span class="json-email">${escapeHtml(info.email)}</span></p>
+        <p>Phone: <span class="json-phone">${escapeHtml(info.phone)}</span></p>
+        <p>Address: <span class="json-address">${escapeHtml(info.address?.street || '')}, ${escapeHtml(info.address?.city || '')}</span></p>
+        <p>Country: <span class="json-country">${escapeHtml(info.address?.country || '')}</span></p>
     `;
     console.log("Contact info loaded");
 }
@@ -162,77 +201,89 @@ function renderContactInfo() {
 function renderInterests() {
     const interests = siteData.resume?.interests;
     const container = document.getElementById('json-interests');
+    const texts = siteData.pageContent?.cvPage;
     if (!container) return;
     
     if (!interests || interests.length === 0) {
-        container.innerHTML = '<p>No interests listed</p>';
+        container.innerHTML = `<p>${texts?.noDataText || 'No interests listed'}</p>`;
         return;
     }
     
     container.innerHTML = `
         <div class="interests-list">
-            ${interests.map(i => `<span class="interest-tag"> ${escapeHtml(i)}</span>`).join('')}
+            ${interests.map(i => `<span class="interest-tag">${escapeHtml(i)}</span>`).join('')}
         </div>
     `;
     console.log(`${interests.length} interests loaded`);
 }
 
-function renderTimeline() {
-    const resume = siteData.resume;
-    if (!resume) return;
+// Render documents with optional filtering
+// showOnlyCV = true: only show documents where showOnCV is true
+// showOnlyCV = false: show all documents (for certificate page)
+function renderDocuments(showOnlyCV = false) {
+    const container = document.getElementById('documents-grid');
+    const documents = siteData.documents?.documents;
+    const texts = siteData.pageContent?.cvPage;
     
-    const yearEvents = {};
+    if (!container) return;
     
-    if (resume.workExperience) {
-        resume.workExperience.forEach(job => {
-            const years = extractYears(job.period);
-            years.forEach(year => {
-                if (!yearEvents[year]) yearEvents[year] = [];
-                yearEvents[year].push({ type: 'work', desc: `${job.position} bei ${job.company}` });
-            });
-        });
+    if (!documents || documents.length === 0) {
+        container.innerHTML = `<p class="json-error">${texts?.noDataText || 'No documents available'}</p>`;
+        return;
     }
     
-    if (resume.education) {
-        resume.education.forEach(edu => {
-            const years = extractYears(edu.period);
-            years.forEach(year => {
-                if (!yearEvents[year]) yearEvents[year] = [];
-                yearEvents[year].push({ type: 'education', desc: edu.program });
-            });
-        });
+    // Filter documents based on where they should appear
+    let filteredDocs = documents;
+    if (showOnlyCV) {
+        filteredDocs = documents.filter(doc => doc.showOnCV === true);
     }
     
-    const defaults = {
-        '2016': 'Schulabschluss', '2017': 'Schulische Ausbildung', '2018': 'Fachabitur', '2019': 'Ausbildung beginnt',
-        '2020': 'Fachabitur abgeschlossen', '2021': 'Berufseinstieg', '2022': 'Kundenberatung', '2023': 'Vertrieb & Beratung',
-        '2024': 'Weiterbildung', '2025': 'Aktuell: Umschulung FI/AE'
-    };
+    if (filteredDocs.length === 0) {
+        container.innerHTML = `<p class="json-error">${texts?.noDataText || 'No documents available'}</p>`;
+        return;
+    }
     
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    timelineItems.forEach(item => {
-        const yearEl = item.querySelector('.timeline-year');
-        if (!yearEl) return;
-        const year = yearEl.textContent.trim();
-        const tooltip = item.querySelector('.timeline-tooltip');
-        
-        if (yearEvents[year] && yearEvents[year].length > 0) {
-            tooltip.innerHTML = yearEvents[year][0].desc;
-            item.classList.add('has-data');
-        } else {
-            tooltip.innerHTML = defaults[year] || `Aktivitäten in ${year}`;
-        }
+    let html = '';
+    filteredDocs.forEach(doc => {
+        html += `
+            <div class="document-card">
+                <div class="document-icon">${doc.icon || '📄'}</div>
+                <div class="document-info">
+                    <h4>${escapeHtml(doc.title)}</h4>
+                    ${doc.description ? `<p>${escapeHtml(doc.description)}</p>` : ''}
+                    <p class="upload-date">Uploaded: ${doc.uploadDate || 'Unknown'}</p>
+                    <div class="document-actions">
+                        ${doc.viewable !== false ? `<button class="btn view-document" data-path="${escapeHtml(doc.path)}">View</button>` : ''}
+                        ${doc.downloadable !== false ? `<a href="${escapeHtml(doc.path)}" download><button class="btn">Download</button></a>` : ''}
+                    </div>
+                </div>
+            </div>
+        `;
     });
-    console.log("Timeline rendered");
+    
+    container.innerHTML = html;
+    console.log(`${filteredDocs.length} documents loaded (showOnlyCV: ${showOnlyCV})`);
+    
+    document.querySelectorAll('.view-document').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const path = this.getAttribute('data-path');
+            if (typeof openModal === 'function') {
+                openModal(path);
+            } else {
+                window.open(path, '_blank');
+            }
+        });
+    });
 }
 
 function renderWorkExperience() {
     const container = document.getElementById('json-work-experience');
     const experiences = siteData.resume?.workExperience;
+    const texts = siteData.pageContent?.cvPage;
     if (!container) return;
     
     if (!experiences || experiences.length === 0) {
-        container.innerHTML = '<p>Keine Berufserfahrung vorhanden</p>';
+        container.innerHTML = `<p>${texts?.noDataText || 'No work experience available'}</p>`;
         return;
     }
     
@@ -261,10 +312,11 @@ function renderWorkExperience() {
 function renderEducation() {
     const container = document.getElementById('json-education');
     const education = siteData.resume?.education;
+    const texts = siteData.pageContent?.cvPage;
     if (!container) return;
     
     if (!education || education.length === 0) {
-        container.innerHTML = '<p>Keine Ausbildung vorhanden</p>';
+        container.innerHTML = `<p>${texts?.noDataText || 'No education data available'}</p>`;
         return;
     }
     
@@ -286,13 +338,14 @@ function renderEducation() {
     console.log(`${education.length} education items loaded`);
 }
 
-function renderSkills() {
+function renderSkillsFromJSON() {
     const container = document.getElementById('json-skills');
     const skills = siteData.resume?.skills;
+    const texts = siteData.pageContent?.cvPage;
     if (!container) return;
     
     if (!skills) {
-        container.innerHTML = '<p>Keine Skills vorhanden</p>';
+        container.innerHTML = `<p>${texts?.noDataText || 'No skills available'}</p>`;
         return;
     }
     
@@ -300,7 +353,7 @@ function renderSkills() {
     
     if (skills.languages?.length) {
         html += `<div class="skills-category">
-            <h4>🌐 Sprachen</h4>
+            <h4>Languages</h4>
             <div class="skills-list languages">
                 ${skills.languages.map(l => `<span class="skill-tag">${escapeHtml(l.language)} (${l.level})</span>`).join('')}
             </div>
@@ -309,7 +362,7 @@ function renderSkills() {
     
     if (skills.software?.length) {
         html += `<div class="skills-category">
-            <h4>💻 Software & Technologien</h4>
+            <h4>Software & Technologies</h4>
             <div class="skills-list software">
                 ${skills.software.map(s => `<span class="skill-tag">${escapeHtml(s.name)} (${s.level})</span>`).join('')}
             </div>
@@ -318,14 +371,14 @@ function renderSkills() {
     
     if (skills.drivingLicense) {
         html += `<div class="skills-category">
-            <h4>🚗 Führerschein</h4>
+            <h4>Driving License</h4>
             <p class="license">${escapeHtml(skills.drivingLicense)}</p>
         </div>`;
     }
     
     if (skills.abilities?.length) {
         html += `<div class="skills-category">
-            <h4> Persönliche Fähigkeiten</h4>
+            <h4>Personal Abilities</h4>
             <div class="skills-list abilities">
                 ${skills.abilities.map(a => `<span class="skill-tag">${escapeHtml(a)}</span>`).join('')}
             </div>
@@ -334,7 +387,63 @@ function renderSkills() {
     
     html += '</div>';
     container.innerHTML = html;
-    console.log("Skills loaded");
+    console.log("Skills loaded from resume.json");
+}
+
+function renderManualSkills() {
+    const skillsData = siteData.pageContent?.skillsData;
+    if (!skillsData) return;
+    
+    const progLangGrid = document.getElementById('prog-lang-grid');
+    if (progLangGrid && skillsData.programmingLanguages) {
+        progLangGrid.innerHTML = skillsData.programmingLanguages.map(skill => `
+            <div class="skill">
+                <span>${escapeHtml(skill.name)}</span>
+                <div class="skill-bar"><div class="skill-progress" data-level="${skill.level}"></div></div>
+            </div>
+        `).join('');
+    }
+    
+    const softskillsGrid = document.getElementById('softskills-grid');
+    if (softskillsGrid && skillsData.softskills) {
+        softskillsGrid.innerHTML = skillsData.softskills.map(skill => `
+            <div class="skill">
+                <span>${escapeHtml(skill.name)}</span>
+                <div class="skill-bar"><div class="skill-progress" data-level="${skill.level}"></div></div>
+            </div>
+        `).join('');
+    }
+    
+    const languagesGrid = document.getElementById('languages-grid');
+    if (languagesGrid && skillsData.languages) {
+        languagesGrid.innerHTML = skillsData.languages.map(skill => `
+            <div class="skill">
+                <span>${escapeHtml(skill.name)}</span>
+                <div class="skill-bar"><div class="skill-progress" data-level="${skill.level}"></div></div>
+            </div>
+        `).join('');
+    }
+    
+    const otherGrid = document.getElementById('other-grid');
+    if (otherGrid && skillsData.other) {
+        otherGrid.innerHTML = skillsData.other.map(skill => `
+            <div class="skill">
+                <span>${escapeHtml(skill.name)}</span>
+                <div class="skill-bar"><div class="skill-progress" data-level="${skill.level}"></div></div>
+            </div>
+        `).join('');
+    }
+    
+    if (typeof initSkillBars === 'function') {
+        initSkillBars();
+    } else {
+        document.querySelectorAll('.skill-progress').forEach(bar => {
+            const level = bar.getAttribute('data-level');
+            if (level) bar.style.width = level + '%';
+        });
+    }
+    
+    console.log("Manual skills rendered from pageContent.json");
 }
 
 function renderIndexPage() {
@@ -347,7 +456,7 @@ function renderIndexPage() {
     }
     
     if (content.aboutSections?.length) {
-        const container = document.querySelector('.about-section');
+        const container = document.getElementById('about-section-container');
         if (container) {
             let html = '';
             content.aboutSections.forEach(section => {
@@ -369,10 +478,8 @@ function renderIndexPage() {
     }
     
     if (content.gallery) {
-        const galleryTitle = document.querySelector('.gallery h2');
-        if (galleryTitle) galleryTitle.textContent = content.gallery.title;
-        
-        const images = document.querySelectorAll('.gallery-item img');
+        setText('#gallery-title', content.gallery.title);
+        const images = document.querySelectorAll('.gallery-grid .gallery-item img');
         if (images.length && content.gallery.images) {
             images.forEach((img, i) => {
                 if (content.gallery.images[i]) {
@@ -388,8 +495,7 @@ function renderAboutPage() {
     const content = siteData.pageContent?.about;
     if (!content) return;
     
-    const titleEl = document.getElementById('about-title-1');
-    if (titleEl) titleEl.textContent = content.title;
+    setText('#about-title-1', content.title);
     
     const textEl = document.getElementById('about-text-1');
     if (textEl && content.text) {
@@ -414,73 +520,39 @@ function renderAboutPage() {
     console.log("About page rendered");
 }
 
-function renderCertificates() {
-    const container = document.getElementById('certificates-container');
-    const data = siteData.certificates;
-    if (!container || !data?.items) return;
-    
-    let html = '<div class="documents-grid">';
-    data.items.forEach(cert => {
-        html += `
-        <div class="document-card">
-            <div class="document-icon">📜</div>
-            <div class="document-info">
-                <h4>${escapeHtml(cert.name)}</h4>
-                <p>${escapeHtml(cert.issuer)} • ${escapeHtml(cert.date)}</p>
-                ${cert.file ? `<button class="btn view-certificate" data-file="${escapeHtml(cert.file)}">Ansehen</button>` : ''}
-            </div>
-        </div>`;
-    });
-    html += '</div>';
-    container.innerHTML = html;
-    console.log(`${data.items.length} certificates loaded`);
-    
-    // Add event listeners for certificate buttons (to avoid inline onclick)
-    document.querySelectorAll('.view-certificate').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const file = this.getAttribute('data-file');
-            if (typeof openModal === 'function') {
-                openModal(file);
-            } else {
-                console.warn('openModal function not available yet');
-            }
-        });
-    });
-}
-
 function renderProjects() {
     const container = document.getElementById('projects-container');
-    const data = siteData.projects;
-    if (!container || !data?.items) return;
+    const projects = siteData.projects?.items || siteData.projects?.projects;
+    const texts = siteData.pageContent?.cvPage;
+    
+    if (!container) return;
+    
+    if (!projects || projects.length === 0) {
+        container.innerHTML = `<p class="json-error">${texts?.noDataText || 'No projects available'}</p>`;
+        return;
+    }
     
     let html = '<div class="projects-grid">';
-    data.items.forEach(project => {
+    projects.forEach(project => {
         html += `
-        <div class="project-card">
-            <h3>${escapeHtml(project.name)}</h3>
-            <p>${escapeHtml(project.description)}</p>
-            ${project.link ? `<a href="${project.link}" target="_blank" class="btn">Mehr erfahren</a>` : ''}
-        </div>`;
+            <div class="project-card">
+                <h3>${escapeHtml(project.name)}</h3>
+                <p>${escapeHtml(project.description)}</p>
+                ${project.link ? `<a href="${project.link}" target="_blank" class="btn">Learn more</a>` : ''}
+            </div>
+        `;
     });
     html += '</div>';
     container.innerHTML = html;
-    console.log(`${data.items.length} projects loaded`);
+    console.log(`${projects.length} projects loaded`);
 }
 
 // ==================== HELPER FUNCTIONS ====================
 
-function extractYears(period) {
-    const years = [];
-    const matches = period.match(/\b(20\d{2})\b/g);
-    if (matches) matches.forEach(m => years.push(m));
-    return years;
-}
-
 function setText(selector, text) {
     if (!text) return;
-    document.querySelectorAll(selector).forEach(el => {
-        if (el) el.textContent = text;
-    });
+    const element = document.querySelector(selector);
+    if (element) element.textContent = text;
 }
 
 function escapeHtml(str) {
@@ -494,10 +566,12 @@ function escapeHtml(str) {
 }
 
 function showError(message) {
-    const containers = ['json-work-experience', 'json-education', 'json-skills', 'json-interests'];
+    const containers = ['json-work-experience', 'json-education', 'json-skills', 'json-interests', 'documents-grid', 'projects-container'];
     containers.forEach(id => {
         const el = document.getElementById(id);
-        if (el) el.innerHTML = `<div class="json-error">⚠️ ${message}</div>`;
+        if (el && (el.innerHTML === '' || el.querySelector('.json-loading'))) {
+            el.innerHTML = `<div class="json-error">${message}</div>`;
+        }
     });
 }
 
@@ -514,33 +588,37 @@ async function init() {
     
     const page = getCurrentPage();
     
-    // Global functions (all pages)
     renderNavigation();
     renderSocialLinks();
     renderFooter();
     renderSearchPlaceholder();
+    renderPageTexts();
     renderContactInfo();
     renderInterests();
     
-    // Page specific functions
     switch(page) {
         case 'index':
             renderIndexPage();
             break;
+        case 'about':
+            renderAboutPage();
+            break;
         case 'cv':
-            renderTimeline();
+            // On CV page: only show documents where showOnCV is true
+            renderDocuments(true);
             renderWorkExperience();
             renderEducation();
-            renderSkills();
+            renderSkillsFromJSON();
+            renderManualSkills();
             break;
         case 'certificate':
-            renderCertificates();
+            // On certificate page: show all documents (no filter)
+            renderDocuments(false);
             break;
         case 'project':
             renderProjects();
             break;
-        case 'about':
-            renderAboutPage();
+        case 'contact':
             break;
         default:
             console.log(`No specific logic for page: ${page}`);
@@ -549,11 +627,9 @@ async function init() {
     console.log("All data loaded and rendered");
 }
 
-// Start when DOM is ready
 document.addEventListener('DOMContentLoaded', init);
 
-// Debug functions
 window.reloadCVData = () => init();
 window.testJSON = () => {
-    alert(`JSON Status:\nResume: ${siteData.resume ? 'OK' : 'Missing'}\nPageContent: ${siteData.pageContent ? 'OK' : 'Missing'}\nConfig: ${siteData.config ? 'OK' : 'Missing'}`);
+    alert(`JSON Status:\nResume: ${siteData.resume ? 'OK' : 'Missing'}\nPageContent: ${siteData.pageContent ? 'OK' : 'Missing'}\nDocuments: ${siteData.documents ? 'OK' : 'Missing'}\nProjects: ${siteData.projects ? 'OK' : 'Missing'}\nConfig: ${siteData.config ? 'OK' : 'Missing'}`);
 };

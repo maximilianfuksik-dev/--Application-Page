@@ -4,22 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link id="light" rel="stylesheet" href="assets/css/stylesheet.css">
-    <title>Maximilian Fuksik</title>
+    <title>Maximilian Fuksik - Lebenslauf</title>
 </head>
 <body>
-<!-- HEAD -->
+<!-- HEADER -->
 <header>
     <img src="assets/images/trees-8563877_1920.jpg" class="header-image" alt="Header image with trees">
     <div class="header-content">
         <div class="icon"></div>
-        <!-- Navigation Bar - Will be filled by config.json -->
         <div id="nav">
             <nav>
                 <ul id="nav-links">
-                    <!-- Dynamic navigation from cv-loader.js will go here -->
+                    <!-- Dynamic navigation from config.json -->
                 </ul>
-                
-                <!-- Dark Mode Toggle - STATIC (only once in HTML) -->
                 <li class="dark-mode-item">
                     <span id="dayNight"> 🔆 | ☾ </span>
                     <label class="darkMode" for="toggle-checkbox">
@@ -30,7 +27,6 @@
             </nav>
         </div>
     </div>
-    <!-- Clock -->
     <div id="clock">
         <div class="time">
             <span id="hours"></span><span class="separator">:</span>
@@ -40,251 +36,110 @@
         <div id="date"></div>
     </div>
 </header>
-<!-- EIN Container für alles -->
+
+<!-- HAUPT-CONTAINER -->
 <div class="container">
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="widget search-widget">
-            <h3>Search</h3>
+            <h3 id="search-title"></h3>
             <span class="search-icon"></span>
             <input type="text" id="json-search" placeholder="">
         </div>
 
-        <!-- SOCIAL MEDIA / PROFILE LINKS - Dynamic from config.json -->
         <div class="widget">
-            <h3>Links</h3>
-            <div id="social-links" class="profile-links">
-                <!-- Dynamic social links from config.json -->
-            </div>
+            <h3 id="links-title"></h3>
+            <div id="social-links" class="profile-links"></div>
         </div>
         
         <div class="widget">
-            <h3>Contact</h3>
-            <div id="json-contact">
-                <p>Email: <span class="json-email"></span></p>
-                <p>Phone: <span class="json-phone"></span></p>
-                <p>Address: <span class="json-address"></span></p>
-                <p>Country: <span class="json-country"></span></p>
-            </div>
+            <h3 id="contact-title"></h3>
+            <div id="json-contact"></div>
         </div>
 
         <div class="widget">
-            <h3>Interests</h3>
+            <h3 id="interests-title"></h3>
             <div id="json-interests">
-                <p class="json-loading">Loading interests...</p>
+                <p class="json-loading"></p>
             </div>
         </div>
     </aside>
 
-    <!-- Lebenslauf + Timeline Container -->
-    <section class="resume-timeline-container">     
-        <!-- Rechte Seite: Timeline -->
-        <div class="timeline-documents-wrapper">
-            <div class="timeline-box">
-                <h2>Lebenslauf Timeline</h2>
-                <!-- Erste Reihe mit JSON Daten -->
-                <div class="timeline-horizontal" id="timeline-row-1">
-                    <div class="timeline-item timeline-dynamic-item">
-                        <div class="timeline-year">2016</div>
-                        <div class="timeline-tooltip">Lade Daten...</div>
-                    </div>
-                    <div class="timeline-item timeline-dynamic-item">
-                        <div class="timeline-year">2017</div>
-                        <div class="timeline-tooltip">Lade Daten...</div>
-                    </div>
-                    <div class="timeline-item timeline-dynamic-item">
-                        <div class="timeline-year">2018</div>
-                        <div class="timeline-tooltip">Lade Daten...</div>
-                    </div>
-                    <div class="timeline-item timeline-dynamic-item">
-                        <div class="timeline-year">2019</div>
-                        <div class="timeline-tooltip">Lade Daten...</div>
-                    </div>
-                    <div class="timeline-item timeline-dynamic-item">
-                        <div class="timeline-year">2020</div>
-                        <div class="timeline-tooltip">Lade Daten...</div>
-                    </div>
-                </div>
-                
-                <!-- Zweite Reihe mit JSON Daten -->
-                <div class="timeline-horizontal second-row" id="timeline-row-2">
-                    <div class="timeline-item timeline-dynamic-item">
-                        <div class="timeline-year">2021</div>
-                        <div class="timeline-tooltip">Lade Daten...</div>
-                    </div>
-                    <div class="timeline-item timeline-dynamic-item">
-                        <div class="timeline-year">2022</div>
-                        <div class="timeline-tooltip">Lade Daten...</div>
-                    </div>
-                    <div class="timeline-item timeline-dynamic-item">
-                        <div class="timeline-year">2023</div>
-                        <div class="timeline-tooltip">Lade Daten...</div>
-                    </div>
-                    <div class="timeline-item timeline-dynamic-item">
-                        <div class="timeline-year">2024</div>
-                        <div class="timeline-tooltip">Lade Daten...</div>
-                    </div>
-                    <div class="timeline-item timeline-dynamic-item">
-                        <div class="timeline-year">2025</div>
-                        <div class="timeline-tooltip">Lade Daten...</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-
-        <!-- Linke Seite: Dokumente -->
+    <!-- CV-HAUPTINHALT -->
+    <main class="cv-main"> 
+        <!-- DOKUMENTE -->
         <div class="resume-documents">
-            <h3>Meine Dokumente</h3>
-            <p>Hier können Sie meinen Lebenslauf und weitere Unterlagen herunterladen oder direkt ansehen.</p>
-            <div class="documents-grid">
-                <div class="document-card">
-                    <div class="document-icon">📄</div>
-                    <div class="document-info">
-                        <h4>Lebenslauf.pdf</h4>
-                        <p>Hochgeladen am: 12.05.2025</p>
-                        <div class="document-actions">
-                            <button class="btn" onclick="openModal('docs/Lebenslauf.pdf')">Ansehen</button>
-                            <a href="/docs/bwg/Lebenslauf 2026.pdf" download>
-                                <button class="btn">Herunterladen</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <h3 id="documents-title"></h3>
+            <p id="documents-subtitle"></p>
+            <div class="documents-grid" id="documents-grid">
+                <p class="json-loading"></p>
             </div>
         </div>
+
+        <br>
         
-        <!-- Bereich für die Anzeige -->
+        <!-- PDF MODAL -->
         <div id="pdf-modal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="closeModal()">&times;</span>
                 <iframe id="modal-frame" src="" width="100%" height="600px"></iframe>
             </div>
         </div>
-        <br>
 
-        <!-- Berufserfahrung aus JSON -->
-            <section class="work-experience-json">
-                <h2>📁 Berufserfahrung</h2>
-                <div id="json-work-experience">
-                    <p class="json-loading">Lade Berufserfahrung...</p>
-                </div>
-            </section>
-        <br>
-
-        <!-- Ausbildung aus JSON -->
-            <section class="education-json">
-                <h2>🎓 Ausbildung & Weiterbildung</h2>
-                <div id="json-education">
-                    <p class="json-loading">Lade Ausbildung...</p>
-                </div>
-            </section>
-        <br>
-
-        <!-- Fähigkeiten aus JSON -->
-            <section class="skills-json">
-                <h2>🛠️ Kenntnisse & Fähigkeiten</h2>
-                <div id="json-skills">
-                    <p class="json-loading">Lade Fähigkeiten...</p>
-                </div>
-            </section>
-        <br>
-
-        <!-- Skill Section (manuelle) -->
-        <section class="skills-section">
-            <h2>Meine Skills</h2>
-
-            <!-- Programmiersprachen -->
-            <div class="skill-category">
-                <h3> 🖳 Programmiersprachen</h3>
-                <div class="skills-grid">
-                    <div class="skill">
-                        <span>HTML & CSS</span>
-                        <div class="skill-bar"><div class="skill-progress" data-level="65"></div></div>
-                    </div>
-                    <div class="skill">
-                        <span>JavaScript</span>
-                        <div class="skill-bar"><div class="skill-progress" data-level="45"></div></div>
-                    </div>
-                    <div class="skill">
-                        <span>Python</span>
-                        <div class="skill-bar"><div class="skill-progress" data-level="45"></div></div>
-                    </div>
-                    <div class="skill">
-                        <span>Java</span>
-                        <div class="skill-bar"><div class="skill-progress" data-level="15"></div></div>
-                    </div>
-                    <div class="skill">
-                        <span>SQL</span>
-                        <div class="skill-bar"><div class="skill-progress" data-level="65"></div></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Softskills -->
-            <div class="skill-category">
-                <h3> ☕︎ Softskills</h3>
-                <div class="skills-grid">
-                    <div class="skill">
-                        <span>Teamfähigkeit</span>
-                        <div class="skill-bar"><div class="skill-progress" data-level="95"></div></div>
-                    </div>
-                    <div class="skill">
-                        <span>Problemlösung</span>
-                        <div class="skill-bar"><div class="skill-progress" data-level="85"></div></div>
-                    </div>
-                    <div class="skill">
-                        <span>Kreativität</span>
-                        <div class="skill-bar"><div class="skill-progress" data-level="75"></div></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sprachen -->
-            <div class="skill-category">
-                <h3> 🗣 Sprachen</h3>
-                <div class="skills-grid">
-                    <div class="skill">
-                        <span>Deutsch</span>
-                        <div class="skill-bar"><div class="skill-progress" data-level="90"></div></div>
-                    </div>
-                    <div class="skill">
-                        <span>Englisch (B2)</span>
-                        <div class="skill-bar"><div class="skill-progress" data-level="80"></div></div>
-                    </div>
-                    <div class="skill">
-                        <span>Spanisch</span>
-                        <div class="skill-bar"><div class="skill-progress" data-level="10"></div></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sonstiges -->
-            <div class="skill-category">
-                <h3> ➯ Sonstiges</h3>
-                <div class="skills-grid">
-                    <div class="skill">
-                        <span>Office Anwendungen</span>
-                        <div class="skill-bar"><div class="skill-progress" data-level="75"></div></div>
-                    </div>
-                    <div class="skill">
-                        <span>Führerschein Klasse B</span>
-                        <div class="skill-bar"><div class="skill-progress" data-level="100"></div></div>
-                    </div>
-                </div>
+        <!-- BERUFSERFAHRUNG aus JSON -->
+        <section class="work-experience-json">
+            <h2 id="work-title"></h2>
+            <div id="json-work-experience">
+                <p class="json-loading"></p>
             </div>
         </section>
-    </section>
+
+        <!-- AUSBILDUNG aus JSON -->
+        <section class="education-json">
+            <h2 id="education-title"></h2>
+            <div id="json-education">
+                <p class="json-loading"></p>
+            </div>
+        </section>
+
+        <!-- FÄHIGKEITEN aus JSON -->
+        <section class="skills-json">
+            <h2 id="skills-json-title"></h2>
+            <div id="json-skills">
+                <p class="json-loading"></p>
+            </div>
+        </section>
+
+        <!-- MANUELLE SKILLS (aus JSON geladen) -->
+        <section class="skills-section">
+            <h2 id="skills-title"></h2>
+
+            <div class="skill-category">
+                <h3 id="prog-lang-title"></h3>
+                <div class="skills-grid" id="prog-lang-grid"></div>
+            </div>
+
+            <div class="skill-category">
+                <h3 id="softskills-title"></h3>
+                <div class="skills-grid" id="softskills-grid"></div>
+            </div>
+
+            <div class="skill-category">
+                <h3 id="languages-title"></h3>
+                <div class="skills-grid" id="languages-grid"></div>
+            </div>
+
+            <div class="skill-category">
+                <h3 id="other-title"></h3>
+                <div class="skills-grid" id="other-grid"></div>
+            </div>
+        </section>
+   </main> 
 </div>
 
 <!-- FOOTER -->
 <footer>
-    <p>
-        <a href="legal/legalnotice.html">Impressum</a> | 
-        <a href="legal/privacypolicy.html">Datenschutz</a> | 
-        <a href="contact.html">Kontakt</a> | 
-        © 2025 Maximilian Fuksik. Alle Rechte vorbehalten.
-    </p>
+    <p id="footer-content"></p>
 </footer>
 
 <script src="assets/js/cv-loader.js"></script>

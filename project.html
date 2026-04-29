@@ -3,122 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link id="light" rel="stylesheet" href="/assets/stylesheet.css">
-    <title>Maximilian Fuksik</title>
+    <link id="light" rel="stylesheet" href="assets/css/stylesheet.css">
+    <title>Maximilian Fuksik - Projekte</title>
 </head>
 <body>
 <!-- HEAD -->
-        <header>
-            <img src="pic/trees-8563877_1920.jpg" class="header-image" alt="Header Bild mit Bäumen">
-            <div class="header-content">
-               <div class="icon"></div>
-<!-- Navigations-Bar--> 
-                <div id="nav">
-                    <nav>
-                        <ul>
-                            <li><a href="index.html"> 🏠︎ Home</a></li>
-                            <li><a href="about.html"> 𓂃🖊 About</a></li>
-                            <li><a href="cv.html"> 🇨🇻 Lebenslauf</a></li>      
-                            <li><a href="certificate.html"> 🗐 Zertifikate</a></li>    
-                            <li><a href="project.html"> 🗒 Projekte</a></li>    
-                            <li><a href="contact.html"> ✉ Kontakt</a></li>   
-                            <li><a href="weiteres.html"> » Weiteres</a></li>
-                            <li><a href="#"> 🛠 </a></li>
-                            <!-- Dark Mode als Listenelement -->
-                            <li class="dark-mode-item">
-                                <span id="dayNight"> 🔆 | ☾ </span>
-                                <label class="darkMode" for="toggle-checkbox">
-                                    <input type="checkbox" id="toggle-checkbox">
-                                    <span class="d-btn"></span>
-                                </label>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-<!-- Clock -->
-            <div id="clock">
-                <div class="time">
-                    <span id="hours"></span><span class="separator">:</span>
-                    <span id="minutes"></span><span class="separator">:</span>
-                    <span id="seconds"></span>
-                </div>
-                <div id="date"></div>
-            </div>
-        </header>
+<header>
+    <img src="assets/images/trees-8563877_1920.jpg" class="header-image" alt="Header image with trees">
+    <div class="header-content">
+        <div class="icon"></div>
+        <!-- Navigation Bar - Will be filled by config.json -->
+        <div id="nav">
+            <nav>
+                <ul id="nav-links">
+                    <!-- Dynamic navigation from cv-loader.js will go here -->
+                </ul>
+                
+                <!-- Dark Mode Toggle - STATIC (only once in HTML) -->
+                <li class="dark-mode-item">
+                    <span id="dayNight"> 🔆 | ☾ </span>
+                    <label class="darkMode" for="toggle-checkbox">
+                        <input type="checkbox" id="toggle-checkbox">
+                        <span class="d-btn"></span>
+                    </label>
+                </li>
+            </nav>
+        </div>
+    </div>
+    <!-- Clock -->
+    <div id="clock">
+        <div class="time">
+            <span id="hours"></span><span class="separator">:</span>
+            <span id="minutes"></span><span class="separator">:</span>
+            <span id="seconds"></span>
+        </div>
+        <div id="date"></div>
+    </div>
+</header>
 
-<!-- EIN Container für alles -->
+<!-- CONTAINER for everything -->
 <div class="container">
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="widget search-widget">
-            <h3>Suchenliste</h3>
+            <h3 id="search-title"></h3>
             <span class="search-icon"></span>
-            <input type="text" placeholder="Suchen..." id="json-search">
+            <input type="text" id="json-search" placeholder="">
+        </div>
+
+        <!-- SOCIAL MEDIA / PROFILE LINKS - Dynamic from config.json -->
+        <div class="widget">
+            <h3 id="links-title"></h3>
+            <div id="social-links" class="profile-links">
+                <!-- Dynamic social links from config.json -->
+            </div>
+        </div>
+        
+        <div class="widget">
+            <h3 id="contact-title"></h3>
+            <div id="json-contact"></div>
         </div>
 
         <div class="widget">
-            <h3>Kontaktinfo</h3>
-            <div id="json-contact">
-                <p>📧 Email: <span class="json-email"></span></p>
-                <p>📞 Tel: <span class="json-phone"></span></p>
-                <p>📍 Adresse: <span class="json-address"></span></p>
-                <p> 🌎 Land: <span class="json-country"></span></p>
+            <h3 id="interests-title"></h3>
+            <div id="json-interests">
+                <p class="json-loading"></p>
             </div>
         </div>
-
-        <!-- SOCIAL MEDIA / PROFIL LINKS -->
-        <div class="widget">
-            <h3>Links</h3>
-            <div class="profile-links">
-                <a href="https://github.com/maximilianfuksik-dev" target="_blank" class="profile-link">
-                    <span class="profile-icon">🐙</span>
-                    GitHub
-                </a>
-                <br>
-                <a href="https://linkedin.com/in/DeinLinkedIn" target="_blank" class="profile-link">
-                    <span class="profile-icon">💼</span>
-                    LinkedIn
-                </a>
-            </div>
-            <br>
     </aside>
-            <main>
-                <!---Aktuelle Projekte Anzeigen lassen und verlinkkung auf git alerdings auch eine Komplette 
-                anzeige meiner ganzen Projekte mit maybe datenbank oder so die darauf zugreift-->
-            <h2>Aktuelle Projekte</h2>
-            
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>Projekt 1</h3>
-                    <p>Beschreibung meines ersten Projekts mit Details zu Technologien und Ergebnissen.</p>
-                </div>
-                
-                <div class="project-card">
-                    <h3>Projekt 2</h3>
-                    <p>Beschreibung meines zweiten Projekts mit Fokus auf innovative Lösungen.</p>
-                </div>
-                
-                <div class="project-card">
-                    <h3>Projekt 3</h3>
-                    <p>Beschreibung eines weiteren interessanten Projekts, an dem ich gearbeitet habe.</p>
-                </div>
-            </div>
-         </main>
-    </div>
 
-<!--Footer-->
+    <!-- MAIN CONTENT - PROJECTS -->
+    <main>
+        <h2 id="projects-title"></h2>
+        
+        <div id="projects-container" class="projects-grid">
+            <p class="json-loading"></p>
+        </div>
+    </main>
+</div>
+
+<!-- FOOTER -->
 <footer>
-    <p>
-        <a href="/legal/legalnotice.html">Impressum</a> | 
-        <a href="/legal/privacypolicy.html">Datenschutz</a> | 
-        <a href="contact.html">Kontakt</a> | 
-        © 2025 Maximilian Fuksik. Alle Rechte vorbehalten.
-    </p>
+    <p id="footer-content"></p>
 </footer>
 
-<script src="/assets/script.js"></script>
-<script src="/assets/cv-loader.js"></script>
+<script src="assets/js/cv-loader.js"></script>
+<script src="assets/js/script.js"></script>
 
 </body>
 </html>

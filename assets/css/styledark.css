@@ -803,6 +803,115 @@ footer p a:hover {
     color: var(--primary-color);
 }
 
+/* ============================================
+   IMPRESSUM & DATENSCHUTZ STYLES - DARKMODE
+   ============================================ */
+
+/* Content Box für Impressum und Datenschutz */
+.content-box {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.content-box h1 {
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--primary-color);
+    font-size: 2rem;
+}
+
+/* Impressum Section */
+.impressum-section {
+    margin-bottom: 30px;
+}
+
+.impressum-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.impressum-section h3 {
+    color: var(--text-color);
+    margin: 15px 0 10px 0;
+    font-size: 1.1rem;
+}
+
+.impressum-details {
+    padding-left: 15px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.impressum-details p {
+    margin: 8px 0;
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
+/* Datenschutz Section */
+.datenschutz-section {
+    margin-bottom: 35px;
+}
+
+.datenschutz-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.datenschutz-section h3 {
+    color: var(--text-color);
+    margin: 15px 0 10px 0;
+    font-size: 1.1rem;
+}
+
+.datenschutz-details {
+    padding-left: 15px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.datenschutz-details p {
+    margin: 8px 0;
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
+.datenschutz-details ul {
+    margin: 10px 0 10px 20px;
+    padding-left: 0;
+}
+
+.datenschutz-details li {
+    margin: 5px 0;
+    line-height: 1.5;
+    color: var(--text-light);
+}
+
+/* Responsive Anpassungen für Impressum & Datenschutz */
+@media (max-width: 768px) {
+    .content-box {
+        padding: 15px;
+    }
+    
+    .content-box h1 {
+        font-size: 1.6rem;
+    }
+    
+    .impressum-section h2,
+    .datenschutz-section h2 {
+        font-size: 1.2rem;
+    }
+    
+    .impressum-details,
+    .datenschutz-details {
+        padding-left: 10px;
+    }
+}
+
 /* Uhr */
 #clock {
     position: absolute;

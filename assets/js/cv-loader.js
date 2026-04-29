@@ -9,7 +9,8 @@ let siteData = {
     pageContent: null,
     documents: null,
     projects: null,
-    config: null
+    config: null,
+    legal: null
 };
 
 // ==================== JSON LOADER ====================
@@ -22,7 +23,8 @@ async function loadAllJSON() {
         pageContent: 'data/pageContent.json',
         documents: 'data/documents.json',
         projects: 'data/projects.json',
-        config: 'data/config.json'
+        config: 'data/config.json',
+        legal: 'data/legal.json'
     };
     
     try {
@@ -71,12 +73,12 @@ function renderNavigation() {
     if (!navContainer) return;
     
     const navItems = [
-        { name: " 🏠︎ Home", key: "home", icon: "" },
-        { name: " 𓂃🖊 About", key: "about", icon: "" },
-        { name: "CV", key: "cv", icon: "" },
-        { name: " 🗐 Certificates", key: "certificates", icon: "" },
-        { name: " 🗒 Projects", key: "projects", icon: "" },
-        { name: " ✉ Contact", key: "contact", icon: "" }
+        { name: "Home", key: "home", icon: "🏠︎" },
+        { name: "About", key: "about", icon: "𓂃🖊" },
+        { name: "CV", key: "cv", icon: "🇨🇻" },
+        { name: "Zertifikate", key: "certificates", icon: "🗐" },
+        { name: "Projekte", key: "projects", icon: "🗒" },
+        { name: "Kontakt", key: "contact", icon: "✉" },
         
     ];
     
@@ -84,7 +86,7 @@ function renderNavigation() {
     navItems.forEach(item => {
         const path = config.navigation[item.key];
         if (path) {
-            html += `<li><a href="${path}">${item.name}</a></li>`;
+            html += `<li><a href="${path}"> ${item.icon} ${item.name}</a></li>`;
         }
     });
     
@@ -218,9 +220,7 @@ function renderInterests() {
 }
 
 // Render documents with optional filtering
-// showOnlyCV = true: only show documents where showOnCV is true
-// showOnlyCV = false: show all documents (for certificate page)
-function renderDocuments(showOnlyCV = false) {
+function renderDocuments(type = 'all') {
     const container = document.getElementById('documents-grid');
     const documents = siteData.documents?.documents;
     const texts = siteData.pageContent?.cvPage;
@@ -232,10 +232,11 @@ function renderDocuments(showOnlyCV = false) {
         return;
     }
     
-    // Filter documents based on where they should appear
     let filteredDocs = documents;
-    if (showOnlyCV) {
+    if (type === 'cv') {
         filteredDocs = documents.filter(doc => doc.showOnCV === true);
+    } else if (type === 'certificates') {
+        filteredDocs = documents.filter(doc => doc.showOnCertificates === true);
     }
     
     if (filteredDocs.length === 0) {
@@ -262,7 +263,7 @@ function renderDocuments(showOnlyCV = false) {
     });
     
     container.innerHTML = html;
-    console.log(`${filteredDocs.length} documents loaded (showOnlyCV: ${showOnlyCV})`);
+    console.log(`${filteredDocs.length} documents loaded (type: ${type})`);
     
     document.querySelectorAll('.view-document').forEach(btn => {
         btn.addEventListener('click', function() {
@@ -538,13 +539,194 @@ function renderProjects() {
             <div class="project-card">
                 <h3>${escapeHtml(project.name)}</h3>
                 <p>${escapeHtml(project.description)}</p>
-                ${project.link ? `<a href="${project.link}" target="_blank" class="btn">Learn more</a>` : ''}
+                ${project.link ? `<a href="${project.link}" target="_blank" class="btn"> Explore </a>` : ''}
             </div>
         `;
     });
     html += '</div>';
     container.innerHTML = html;
     console.log(`${projects.length} projects loaded`);
+}
+
+function renderImpressum() {
+    const container = document.getElementById('impressum-content');
+    const legal = siteData.legal?.impressum;
+    const personalInfo = siteData.resume?.personalInfo;
+    
+    if (!container || !legal) {
+        if (container) container.innerHTML = '<p class="json-error">Impressum data not available</p>';
+        return;
+    }
+    
+    const replacePlaceholders = (text) => {
+        if (!text) return '';
+        return text
+            .replace(/{name}/g, personalInfo?.name || '')
+            .replace(/{street}/g, personalInfo?.address?.street || '')
+            .replace(/{city}/g, personalInfo?.address?.city || '')
+            .replace(/{country}/g, personalInfo?.address?.country || '')
+            .replace(/{phone}/g, personalInfo?.phone || '')
+            .replace(/{email}/g, personalInfo?.email || '');
+    };
+    
+    let html = `<h1>${legal.title}</h1>`;
+    
+    if (legal.sections?.accordingTo) {
+        html += `<section class="impressum-section">
+            <h2>${legal.sections.accordingTo.title}</h2>
+            <div class="impressum-details">
+                ${legal.sections.accordingTo.content.map(line => `<p>${replacePlaceholders(line)}</p>`).join('')}
+            </div>
+        </section>`;
+    }
+    
+    if (legal.sections?.contact) {
+        html += `<section class="impressum-section">
+            <h2>${legal.sections.contact.title}</h2>
+            <div class="impressum-details">
+                ${legal.sections.contact.content.map(line => `<p>${replacePlaceholders(line)}</p>`).join('')}
+            </div>
+        </section>`;
+    }
+    
+    if (legal.sections?.responsible) {
+        html += `<section class="impressum-section">
+            <h2>${legal.sections.responsible.title}</h2>
+            <div class="impressum-details">
+                ${legal.sections.responsible.content.map(line => `<p>${replacePlaceholders(line)}</p>`).join('')}
+            </div>
+        </section>`;
+    }
+    
+    if (legal.sections?.disclaimer) {
+        html += `<section class="impressum-section">
+            <h2>${legal.sections.disclaimer.title}</h2>
+            <div class="impressum-details">
+                <h3>${legal.sections.disclaimer.subsections.liabilityContent.title}</h3>
+                <p>${legal.sections.disclaimer.subsections.liabilityContent.text}</p>
+                <h3>${legal.sections.disclaimer.subsections.liabilityLinks.title}</h3>
+                <p>${legal.sections.disclaimer.subsections.liabilityLinks.text}</p>
+                <h3>${legal.sections.disclaimer.subsections.copyright.title}</h3>
+                <p>${legal.sections.disclaimer.subsections.copyright.text}</p>
+            </div>
+        </section>`;
+    }
+    
+    if (legal.sections?.euSettlement) {
+        html += `<section class="impressum-section">
+            <h2>${legal.sections.euSettlement.title}</h2>
+            <div class="impressum-details">
+                <p>${legal.sections.euSettlement.text}</p>
+            </div>
+        </section>`;
+    }
+    
+    container.innerHTML = html;
+    console.log("Impressum rendered");
+}
+
+function renderDatenschutz() {
+    const container = document.getElementById('datenschutz-content');
+    const legal = siteData.legal?.datenschutz;
+    const personalInfo = siteData.resume?.personalInfo;
+    
+    if (!container || !legal) {
+        if (container) container.innerHTML = '<p class="json-error">Privacy policy data not available</p>';
+        return;
+    }
+    
+    const replacePlaceholders = (text) => {
+        if (!text) return '';
+        return text
+            .replace(/{name}/g, personalInfo?.name || '')
+            .replace(/{street}/g, personalInfo?.address?.street || '')
+            .replace(/{city}/g, personalInfo?.address?.city || '')
+            .replace(/{country}/g, personalInfo?.address?.country || '')
+            .replace(/{phone}/g, personalInfo?.phone || '')
+            .replace(/{email}/g, personalInfo?.email || '');
+    };
+    
+    let html = `<h1>${legal.title}</h1>`;
+    
+    if (legal.sections?.responsible) {
+        html += `<section class="datenschutz-section">
+            <h2>${legal.sections.responsible.title}</h2>
+            <div class="datenschutz-details">
+                <p>${legal.sections.responsible.text || ''}</p>
+                ${legal.sections.responsible.content.map(line => `<p>${replacePlaceholders(line)}</p>`).join('')}
+            </div>
+        </section>`;
+    }
+    
+    if (legal.sections?.dataCollection) {
+        html += `<section class="datenschutz-section">
+            <h2>${legal.sections.dataCollection.title}</h2>
+            <div class="datenschutz-details">
+                <h3>${legal.sections.dataCollection.subsections.websiteVisit.title}</h3>
+                <p>${legal.sections.dataCollection.subsections.websiteVisit.text}</p>
+                <ul>${legal.sections.dataCollection.subsections.websiteVisit.list.map(item => `<li>${item}</li>`).join('')}</ul>
+                <p>${legal.sections.dataCollection.subsections.websiteVisit.legalText}</p>
+                <h3>${legal.sections.dataCollection.subsections.contact.title}</h3>
+                <p>${legal.sections.dataCollection.subsections.contact.text}</p>
+            </div>
+        </section>`;
+    }
+    
+    if (legal.sections?.cookies) {
+        html += `<section class="datenschutz-section">
+            <h2>${legal.sections.cookies.title}</h2>
+            <div class="datenschutz-details">
+                <p>${legal.sections.cookies.text}</p>
+                <ul>${legal.sections.cookies.list.map(item => `<li>${item}</li>`).join('')}</ul>
+                <p>${legal.sections.cookies.legalText}</p>
+            </div>
+        </section>`;
+    }
+    
+    if (legal.sections?.externalServices) {
+        html += `<section class="datenschutz-section">
+            <h2>${legal.sections.externalServices.title}</h2>
+            <div class="datenschutz-details">
+                <h3>${legal.sections.externalServices.subsections.github.title}</h3>
+                <p>${legal.sections.externalServices.subsections.github.text}</p>
+                <h3>${legal.sections.externalServices.subsections.linkedin.title}</h3>
+                <p>${legal.sections.externalServices.subsections.linkedin.text}</p>
+            </div>
+        </section>`;
+    }
+    
+    if (legal.sections?.userRights) {
+        html += `<section class="datenschutz-section">
+            <h2>${legal.sections.userRights.title}</h2>
+            <div class="datenschutz-details">
+                <p>${legal.sections.userRights.text}</p>
+                <ul>${legal.sections.userRights.list.map(item => `<li>${item}</li>`).join('')}</ul>
+                <p>${legal.sections.userRights.legalText}</p>
+            </div>
+        </section>`;
+    }
+    
+    if (legal.sections?.dataSecurity) {
+        html += `<section class="datenschutz-section">
+            <h2>${legal.sections.dataSecurity.title}</h2>
+            <div class="datenschutz-details">
+                <p>${legal.sections.dataSecurity.text}</p>
+            </div>
+        </section>`;
+    }
+    
+    if (legal.sections?.changes) {
+        html += `<section class="datenschutz-section">
+            <h2>${legal.sections.changes.title}</h2>
+            <div class="datenschutz-details">
+                <p>${legal.sections.changes.text}</p>
+                <p><strong>Stand:</strong> ${legal.sections.changes.lastUpdated}</p>
+            </div>
+        </section>`;
+    }
+    
+    container.innerHTML = html;
+    console.log("Privacy policy rendered");
 }
 
 // ==================== HELPER FUNCTIONS ====================
@@ -566,7 +748,7 @@ function escapeHtml(str) {
 }
 
 function showError(message) {
-    const containers = ['json-work-experience', 'json-education', 'json-skills', 'json-interests', 'documents-grid', 'projects-container'];
+    const containers = ['json-work-experience', 'json-education', 'json-skills', 'json-interests', 'documents-grid', 'projects-container', 'impressum-content', 'datenschutz-content'];
     containers.forEach(id => {
         const el = document.getElementById(id);
         if (el && (el.innerHTML === '' || el.querySelector('.json-loading'))) {
@@ -604,21 +786,25 @@ async function init() {
             renderAboutPage();
             break;
         case 'cv':
-            // On CV page: only show documents where showOnCV is true
-            renderDocuments(true);
+            renderDocuments('cv');
             renderWorkExperience();
             renderEducation();
             renderSkillsFromJSON();
             renderManualSkills();
             break;
         case 'certificate':
-            // On certificate page: show all documents (no filter)
-            renderDocuments(false);
+            renderDocuments('certificates');
             break;
         case 'project':
             renderProjects();
             break;
         case 'contact':
+            break;
+        case 'legalnotice':
+            renderImpressum();
+            break;
+        case 'privacypolicy':
+            renderDatenschutz();
             break;
         default:
             console.log(`No specific logic for page: ${page}`);
@@ -631,5 +817,5 @@ document.addEventListener('DOMContentLoaded', init);
 
 window.reloadCVData = () => init();
 window.testJSON = () => {
-    alert(`JSON Status:\nResume: ${siteData.resume ? 'OK' : 'Missing'}\nPageContent: ${siteData.pageContent ? 'OK' : 'Missing'}\nDocuments: ${siteData.documents ? 'OK' : 'Missing'}\nProjects: ${siteData.projects ? 'OK' : 'Missing'}\nConfig: ${siteData.config ? 'OK' : 'Missing'}`);
+    alert(`JSON Status:\nResume: ${siteData.resume ? 'OK' : 'Missing'}\nPageContent: ${siteData.pageContent ? 'OK' : 'Missing'}\nDocuments: ${siteData.documents ? 'OK' : 'Missing'}\nProjects: ${siteData.projects ? 'OK' : 'Missing'}\nConfig: ${siteData.config ? 'OK' : 'Missing'}\nLegal: ${siteData.legal ? 'OK' : 'Missing'}`);
 };

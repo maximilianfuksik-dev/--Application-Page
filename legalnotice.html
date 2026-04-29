@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/stylesheet.css">
+    <title>Maximilian Fuksik - Impressum</title>
+</head>
+<body>
+
+<header>
+    <img src="../assets/images/trees-8563877_1920.jpg" class="header-image" alt="Header image with trees">
+    <div class="header-content">
+        <div class="icon"></div>
+        <div id="nav">
+            <nav>
+                <ul id="nav-links"></ul>
+                <li class="dark-mode-item">
+                    <span id="dayNight"> 🔆 | ☾ </span>
+                    <label class="darkMode" for="toggle-checkbox">
+                        <input type="checkbox" id="toggle-checkbox">
+                        <span class="d-btn"></span>
+                    </label>
+                </li>
+            </nav>
+        </div>
+    </div>
+    <div id="clock">
+        <div class="time">
+            <span id="hours"></span><span class="separator">:</span>
+            <span id="minutes"></span><span class="separator">:</span>
+            <span id="seconds"></span>
+        </div>
+        <div id="date"></div>
+    </div>
+</header>
+
+<div class="container">
+    <aside class="sidebar">
+        <div class="widget search-widget">
+            <h3 id="search-title"></h3>
+            <span class="search-icon"></span>
+            <input type="text" id="json-search" placeholder="">
+        </div>
+        <div class="widget">
+            <h3 id="links-title"></h3>
+            <div id="social-links" class="profile-links"></div>
+        </div>
+        <div class="widget">
+            <h3 id="contact-title"></h3>
+            <div id="json-contact"></div>
+        </div>
+        <div class="widget">
+            <h3 id="interests-title"></h3>
+            <div id="json-interests"><p class="json-loading"></p></div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="content-box" id="impressum-content">
+            <div class="json-loading">Loading impressum...</div>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p id="footer-content"></p>
+</footer>
+
+<script src="../assets/js/cv-loader.js"></script>
+<script src="../assets/js/script.js"></script>
+
+
+
+</body>
+</html>

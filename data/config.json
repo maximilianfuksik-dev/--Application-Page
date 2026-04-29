@@ -23,8 +23,8 @@
     "weiteres": "weiteres.html"
   },
   "footer": {
-    "impressum": "legal/legalnotice.html",
-    "datenschutz": "legal/privacypolicy.html",
+    "impressum": "legalnotice.html",
+    "datenschutz": "privacypolicy.html",
     "contact": "contact.html"
   },
   "sidebar": {

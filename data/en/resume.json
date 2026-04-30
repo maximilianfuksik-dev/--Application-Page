@@ -1,0 +1,142 @@
+{
+  "personalInfo": {
+    "name": "Vivian-Maximilian Fuksik",
+    "dateOfBirth": "1999-07-08",
+    "placeOfBirth": "Waldbröl",
+    "phone": "+49 1516 1859480",
+    "email": "maximilianfuksik@gmail.com",
+    "address": {
+      "city": "Castrop-Rauxel",
+      "country": "Germany"
+    }
+  },
+  "workExperience": [
+    {
+      "position": "Customer Consultant",
+      "company": "Avedo GmbH",
+      "location": "Gelsenkirchen",
+      "period": "04/2024 - 08/2024",
+      "responsibilities": [
+        "Processing customer inquiries and support services",
+        "Conducting telephone and online consultations",
+        "Documentation and follow-up of customer processes",
+        "Using CRM systems and call center software"
+      ]
+    },
+    {
+      "position": "Customer Consultant",
+      "company": "Kikxxl GmbH",
+      "location": "Recklinghausen",
+      "period": "04/2023 - 04/2024",
+      "responsibilities": [
+        "Conducting sales and consultation meetings",
+        "Creating quotes and invoices",
+        "Customer support in service area",
+        "Using ERP and CRM systems"
+      ]
+    },
+    {
+      "position": "Customer Consultant",
+      "company": "Amevida GmbH",
+      "location": "Oberhausen",
+      "period": "03/2022 - 08/2022",
+      "responsibilities": [
+        "Supporting business customers in B2B sector",
+        "Consulting on telecommunications solutions and services",
+        "Solving technical inquiries and fault management",
+        "Contract management and proposal creation"
+      ]
+    },
+    {
+      "position": "Assistant to Branch Manager",
+      "company": "Tecis FDL AG Oberhausen",
+      "location": "Oberhausen",
+      "period": "05/2021 - 03/2022",
+      "responsibilities": [
+        "Supporting management in operational tasks",
+        "Planning and organizing company events",
+        "Creating financial analyses and contract documents"
+      ]
+    },
+    {
+      "position": "Self-employed Commercial Agent",
+      "company": "Tecis AG",
+      "location": "Dortmund / Oberhausen",
+      "period": "02/2021 - 03/2023",
+      "responsibilities": [
+        "Consulting and support for private and corporate clients",
+        "Developing customized financial concepts",
+        "Leadership responsibility: leading a small team",
+        "Project management: implementing sales campaigns"
+      ]
+    },
+    {
+      "position": "Training as Automotive Salesman",
+      "company": "Caravan Wessel GmbH",
+      "location": "Ascheberg",
+      "period": "08/2019 - 02/2021",
+      "responsibilities": [
+        "Structured delivery of rental and sales vehicles",
+        "Management and documentation of vehicle inventory",
+        "Creating quotes and invoices",
+        "Customer support for service and warranty services"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "program": "Retraining as IT Specialist for Application Development",
+      "institution": "GFN",
+      "period": "01/2025 - 01/2027 (planned)"
+    },
+    {
+      "program": "Automotive Salesman",
+      "institution": "Ricarda-von-Weizsäcker-Berufskolleg Dülmen",
+      "period": "08/2019 - 04/2021"
+    },
+    {
+      "program": "University of Applied Sciences Entrance Qualification (Business & Administration)",
+      "institution": "Ricarda-von-Weizsäcker-Berufskolleg Lüdinghausen",
+      "period": "08/2016 - 06/2019"
+    },
+    {
+      "program": "Secondary School Certificate",
+      "institution": "Realschule Lüdinghausen",
+      "period": "08/2012 - 06/2016"
+    }
+  ],
+  "skills": {
+    "languages": [
+      { "language": "German", "level": "Native" },
+      { "language": "English", "level": "B2" }
+    ],
+    "software": [
+      { "name": "MS Word", "level": "Good" },
+      { "name": "MS Excel", "level": "Good" },
+      { "name": "MS Outlook", "level": "Good" },
+      { "name": "Python", "level": "Basics" },
+      { "name": "JavaScript", "level": "Basics" },
+      { "name": "HTML & CSS", "level": "Basics" },
+      { "name": "MySQL", "level": "Basics" },
+      { "name": "Java", "level": "Basics" }
+    ],
+    "drivingLicense": "Class B",
+    "abilities": [
+      "Reliability",
+      "Organization",
+      "Flexibility",
+      "Teamwork",
+      "Time Management",
+      "Willingness to Learn"
+    ]
+  },
+  "interests": [
+    "Traveling",
+    "Nature",
+    "Walking",
+    "Dogs",
+    "Archery",
+    "Playing Guitar",
+    "Video Games"
+  ]
+}

@@ -1,6 +1,6 @@
 // ============================================
-// cv-loader.js - Data loading module
-// All texts from JSON for multi-language support
+// cv-loader.js - Main data loading module
+// Multi-language support (DE/EN)
 // ============================================
 
 // Global data container
@@ -13,54 +13,50 @@ let siteData = {
     legal: null
 };
 
+// Language settings
+let currentLang = 'de'; // default: German
+const langNames = { de: 'Deutsch', en: 'English' };
+
 // ==================== PASSWORD PROTECTION ====================
 
 // Password for protected documents
-const DOCS_PASSWORD = '2026'; // Change this to your password
+const DOCS_PASSWORD = '2026';
 
 // List of protected documents (by title or path)
 const PROTECTED_DOCS = [
-    'Lebenslauf',
-    'cv',
-    'CV',
-    'Zertifikat',     // Wenn alle Zertifikate geschützt sein sollen
-    'certificate',    // Alternative Schreibweise
-    'HTML',
-    'CSS',
-    'JavaScript',
-    'SQL',
-    'Python'
+    'Lebenslauf', 'cv', 'CV', 'Zertifikat', 'certificate',
+    'HTML', 'CSS', 'JavaScript', 'SQL', 'Python'
 ];
 
 let pendingDocPath = null;
 
-// Password modal HTML
+// Password modal HTML template
 const passwordModalHTML = `
 <div id="password-modal" class="modal" style="display:none;">
     <div class="modal-content" style="max-width:400px;">
         <span class="close" onclick="closePasswordModal()">&times;</span>
-        <h3>Passwort erforderlich</h3>
-        <p>Dieses Dokument ist passwortgeschützt. Bitte geben Sie das Passwort ein.</p>
-        <input type="password" id="password-input" placeholder="Passwort eingeben" style="width:100%; padding:10px; margin:15px 0; border:1px solid var(--border-color); border-radius:4px;">
+        <h3>Password required</h3>
+        <p>This document is password protected. Please enter the password.</p>
+        <input type="password" id="password-input" placeholder="Enter password" style="width:100%; padding:10px; margin:15px 0; border:1px solid var(--border-color); border-radius:4px;">
         <div style="display:flex; gap:10px;">
-            <button id="password-submit" class="btn">Bestätigen</button>
-            <button onclick="closePasswordModal()" class="btn" style="background:var(--border-light);">Abbrechen</button>
+            <button id="password-submit" class="btn">Confirm</button>
+            <button onclick="closePasswordModal()" class="btn" style="background:var(--border-light);">Cancel</button>
         </div>
     </div>
 </div>
 `;
 
+// Checks if document requires password
 function needsPassword(docPath, docTitle) {
-    // Check if document is in protected list
     const lowerTitle = (docTitle || '').toLowerCase();
     const lowerPath = (docPath || '').toLowerCase();
-    
     return PROTECTED_DOCS.some(protected => {
         const lowerProtected = protected.toLowerCase();
         return lowerTitle.includes(lowerProtected) || lowerPath.includes(lowerProtected);
     });
 }
 
+// Shows password modal dialog
 function showPasswordModal(docPath) {
     pendingDocPath = docPath;
     const modal = document.getElementById('password-modal');
@@ -74,12 +70,14 @@ function showPasswordModal(docPath) {
     }
 }
 
+// Closes password modal dialog
 function closePasswordModal() {
     const modal = document.getElementById('password-modal');
     if (modal) modal.style.display = 'none';
     pendingDocPath = null;
 }
 
+// Validates password and opens document if correct
 function checkPasswordAndOpen() {
     const userPassword = document.getElementById('password-input').value;
     if (userPassword === DOCS_PASSWORD) {
@@ -88,12 +86,13 @@ function checkPasswordAndOpen() {
         }
         closePasswordModal();
     } else {
-        alert('Falsches Passwort! Zugriff verweigert.');
+        alert('Wrong password! Access denied.');
         document.getElementById('password-input').value = '';
         document.getElementById('password-input').focus();
     }
 }
 
+// Handles document access with password check
 function handleDocumentAccess(docPath, docTitle) {
     if (needsPassword(docPath, docTitle)) {
         showPasswordModal(docPath);
@@ -102,18 +101,70 @@ function handleDocumentAccess(docPath, docTitle) {
     }
 }
 
+// ==================== LANGUAGE SWITCHER ====================
+
+// Changes the current language and reloads content
+function setLanguage(lang) {
+    if (lang === 'de' || lang === 'en') {
+        currentLang = lang;
+        localStorage.setItem('preferredLanguage', lang);
+        console.log(`Language changed to: ${lang}`);
+        init(); // Reload all content
+    }
+}
+
+// Retrieves saved language preference from browser storage
+function getLanguageFromStorage() {
+    const saved = localStorage.getItem('preferredLanguage');
+    if (saved === 'de' || saved === 'en') {
+        currentLang = saved;
+    }
+    return currentLang;
+}
+
+// Adds language switcher buttons to navigation bar
+function renderLanguageSwitcher() {
+    const navContainer = document.getElementById('nav-links');
+    if (!navContainer) return;
+    
+    if (document.getElementById('lang-switcher')) return;
+    
+    const langSwitcherHTML = `
+        <li id="lang-switcher" class="lang-switcher-item">
+            <button class="lang-btn ${currentLang === 'de' ? 'active' : ''}" data-lang="de">DE</button>
+            <span class="lang-separator">|</span>
+            <button class="lang-btn ${currentLang === 'en' ? 'active' : ''}" data-lang="en">EN</button>
+        </li>
+    `;
+    
+    navContainer.insertAdjacentHTML('beforeend', langSwitcherHTML);
+    
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const lang = btn.getAttribute('data-lang');
+            setLanguage(lang);
+        });
+    });
+}
+
 // ==================== JSON LOADER ====================
 
+// Builds file path based on current language
+function getDataPath(filename) {
+    return `data/${currentLang}/${filename}.json`;
+}
+
+// Loads all JSON files for current language
 async function loadAllJSON() {
-    console.log("Loading all JSON files...");
+    console.log(`Loading all JSON files (${currentLang})...`);
     
     const files = {
-        resume: 'data/resume.json',
-        pageContent: 'data/pageContent.json',
-        documents: 'data/documents.json',
-        projects: 'data/projects.json',
-        config: 'data/config.json',
-        legal: 'data/legal.json'
+        resume: getDataPath('resume'),
+        pageContent: getDataPath('pageContent'),
+        documents: getDataPath('documents'),
+        projects: getDataPath('projects'),
+        config: getDataPath('config'),
+        legal: getDataPath('legal')
     };
     
     try {
@@ -122,9 +173,9 @@ async function loadAllJSON() {
                 const response = await fetch(path);
                 if (response.ok) {
                     siteData[key] = await response.json();
-                    console.log(`Loaded: ${key}.json`);
+                    console.log(`Loaded: ${key}.json (${currentLang})`);
                 } else {
-                    console.warn(`${key}.json not found`);
+                    console.warn(`${key}.json not found for ${currentLang}`);
                     siteData[key] = null;
                 }
             } catch (error) {
@@ -144,6 +195,7 @@ async function loadAllJSON() {
 
 // ==================== PAGE DETECTION ====================
 
+// Detects current page from URL filename
 function getCurrentPage() {
     const path = window.location.pathname;
     const filename = path.split('/').pop() || 'index.html';
@@ -154,6 +206,7 @@ function getCurrentPage() {
 
 // ==================== RENDER FUNCTIONS ====================
 
+// Renders navigation menu from config
 function renderNavigation() {
     const config = siteData.config;
     if (!config?.navigation) return;
@@ -161,14 +214,16 @@ function renderNavigation() {
     const navContainer = document.getElementById('nav-links');
     if (!navContainer) return;
     
+    const existingSwitcher = document.getElementById('lang-switcher');
+    navContainer.innerHTML = '';
+    
     const navItems = [
         { name: "Home", key: "home", icon: "🏠︎" },
         { name: "About", key: "about", icon: "𓂃🖊" },
-        { name: "CV", key: "cv", icon : ""},
-        { name: "Zertifikate", key: "certificates", icon: "🗐" },
-        { name: "Projekte", key: "projects", icon: "🗒" },
-        { name: "Kontakt", key: "contact", icon: "✉" },
-        
+        { name: "CV", key: "cv", icon: "" },
+        { name: "Certificates", key: "certificates", icon: "🗐" },
+        { name: "Projects", key: "projects", icon: "🗒" },
+        { name: "Contact", key: "contact", icon: "✉" }
     ];
     
     let html = '';
@@ -180,9 +235,26 @@ function renderNavigation() {
     });
     
     navContainer.innerHTML = html;
+    
+    if (existingSwitcher) {
+        navContainer.appendChild(existingSwitcher);
+    } else {
+        renderLanguageSwitcher();
+    }
+    
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        const lang = btn.getAttribute('data-lang');
+        if (lang === currentLang) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+    
     console.log("Navigation rendered");
 }
 
+// Renders social media links in sidebar
 function renderSocialLinks() {
     const config = siteData.config;
     if (!config?.sidebar?.socialLinks) return;
@@ -205,9 +277,10 @@ function renderSocialLinks() {
     console.log("Social links rendered");
 }
 
+// Renders footer with legal links and copyright
 function renderFooter() {
     const config = siteData.config;
-    const container = document.getElementById('footer-content') || document.getElementById('footer-links');
+    const container = document.getElementById('footer-links');
     if (!container) return;
     
     const currentYear = new Date().getFullYear();
@@ -215,24 +288,25 @@ function renderFooter() {
     if (config?.footer) {
         let html = '';
         if (config.footer.impressum) html += `<a href="${config.footer.impressum}">Impressum</a> | `;
-        if (config.footer.datenschutz) html += `<a href="${config.footer.datenschutz}">Datenschutz</a> | `;
-        if (config.footer.contact) html += `<a href="${config.footer.contact}">Kontakt</a> | `;
-        html += `© ${currentYear} Maximilian Fuksik. Alle Rechte vorbehalten.`;
+        if (config.footer.datenschutz) html += `<a href="${config.footer.datenschutz}">Privacy Policy</a> | `;
+        if (config.footer.contact) html += `<a href="${config.footer.contact}">Contact</a> | `;
+        html += `© ${currentYear} Maximilian Fuksik. All rights reserved.`;
         container.innerHTML = html;
     } else {
-        container.innerHTML = `© ${currentYear} Maximilian Fuksik. Alle Rechte vorbehalten.`;
+        container.innerHTML = `© ${currentYear} Maximilian Fuksik. All rights reserved.`;
     }
     console.log("Footer rendered");
 }
 
+// Sets search input placeholder text
 function renderSearchPlaceholder() {
-    const config = siteData.config;
     const pageContent = siteData.pageContent?.cvPage;
     const searchInput = document.getElementById('json-search');
     if (!searchInput) return;
-    searchInput.placeholder = pageContent?.searchPlaceholder || config?.sidebar?.searchPlaceholder || "Search...";
+    searchInput.placeholder = pageContent?.searchPlaceholder || "Search...";
 }
 
+// Renders all text content from pageContent.json
 function renderPageTexts() {
     const texts = siteData.pageContent?.cvPage;
     if (!texts) return;
@@ -264,12 +338,13 @@ function renderPageTexts() {
     setText('#submit-btn', texts.submitBtn);
     
     document.querySelectorAll('.json-loading').forEach(el => {
-        if (el.textContent === '' || el.textContent === 'Loading...') {
+        if (el.textContent === '' || el.textContent === 'Loading...' || el.textContent === 'Laden...') {
             el.textContent = texts.loadingText || 'Loading...';
         }
     });
 }
 
+// Renders contact information (without street address)
 function renderContactInfo() {
     const info = siteData.resume?.personalInfo;
     const container = document.getElementById('json-contact');
@@ -280,15 +355,20 @@ function renderContactInfo() {
         return;
     }
     
+    // City only - street removed
+    const cityOnly = info.address?.city || '';
+    const country = info.address?.country || '';
+    const locationText = cityOnly + (country ? `, ${country}` : '');
+    
     container.innerHTML = `
         <p>Email: <span class="json-email">${escapeHtml(info.email)}</span></p>
         <p>Phone: <span class="json-phone">${escapeHtml(info.phone)}</span></p>
-        <p>Address: <span class="json-address">${escapeHtml(info.address?.street || '')}, ${escapeHtml(info.address?.city || '')}</span></p>
-        <p>Country: <span class="json-country">${escapeHtml(info.address?.country || '')}</span></p>
+        <p>Location: <span class="json-location">${escapeHtml(locationText)}</span></p>
     `;
     console.log("Contact info loaded");
 }
 
+// Renders interests/hobbies section
 function renderInterests() {
     const interests = siteData.resume?.interests;
     const container = document.getElementById('json-interests');
@@ -308,6 +388,7 @@ function renderInterests() {
     console.log(`${interests.length} interests loaded`);
 }
 
+// Renders documents grid (CV or Certificates)
 function renderDocuments(type = 'all') {
     const container = document.getElementById('documents-grid');
     const documents = siteData.documents?.documents;
@@ -371,6 +452,7 @@ function renderDocuments(type = 'all') {
     });
 }
 
+// Renders work experience section
 function renderWorkExperience() {
     const container = document.getElementById('json-work-experience');
     const experiences = siteData.resume?.workExperience;
@@ -404,6 +486,7 @@ function renderWorkExperience() {
     console.log(`${experiences.length} work experiences loaded`);
 }
 
+// Renders education section
 function renderEducation() {
     const container = document.getElementById('json-education');
     const education = siteData.resume?.education;
@@ -433,6 +516,7 @@ function renderEducation() {
     console.log(`${education.length} education items loaded`);
 }
 
+// Renders skills from resume.json
 function renderSkillsFromJSON() {
     const container = document.getElementById('json-skills');
     const skills = siteData.resume?.skills;
@@ -485,6 +569,7 @@ function renderSkillsFromJSON() {
     console.log("Skills loaded from resume.json");
 }
 
+// Renders manual skills from pageContent.json
 function renderManualSkills() {
     const skillsData = siteData.pageContent?.skillsData;
     if (!skillsData) return;
@@ -541,6 +626,7 @@ function renderManualSkills() {
     console.log("Manual skills rendered from pageContent.json");
 }
 
+// Renders index/home page content
 function renderIndexPage() {
     const content = siteData.pageContent?.index;
     if (!content) return;
@@ -586,6 +672,7 @@ function renderIndexPage() {
     console.log("Index page rendered");
 }
 
+// Renders about page content
 function renderAboutPage() {
     const content = siteData.pageContent?.about;
     if (!content) return;
@@ -615,6 +702,7 @@ function renderAboutPage() {
     console.log("About page rendered");
 }
 
+// Renders projects grid
 function renderProjects() {
     const container = document.getElementById('projects-container');
     const projects = siteData.projects?.items || siteData.projects?.projects;
@@ -642,6 +730,7 @@ function renderProjects() {
     console.log(`${projects.length} projects loaded`);
 }
 
+// Renders impressum/legal notice page
 function renderImpressum() {
     const container = document.getElementById('impressum-content');
     const legal = siteData.legal?.impressum;
@@ -719,6 +808,7 @@ function renderImpressum() {
     console.log("Impressum rendered");
 }
 
+// Renders privacy policy page
 function renderDatenschutz() {
     const container = document.getElementById('datenschutz-content');
     const legal = siteData.legal?.datenschutz;
@@ -814,7 +904,7 @@ function renderDatenschutz() {
             <h2>${legal.sections.changes.title}</h2>
             <div class="datenschutz-details">
                 <p>${legal.sections.changes.text}</p>
-                <p><strong>Stand:</strong> ${legal.sections.changes.lastUpdated}</p>
+                <p><strong>Last updated:</strong> ${legal.sections.changes.lastUpdated}</p>
             </div>
         </section>`;
     }
@@ -825,12 +915,13 @@ function renderDatenschutz() {
 
 // ==================== HELPER FUNCTIONS ====================
 
-function setText(selector, text) {
+// Sets text content of an element by selectorfunction setText(selector, text) {
     if (!text) return;
     const element = document.querySelector(selector);
     if (element) element.textContent = text;
-}
 
+
+// Escapes HTML special characters to prevent XSS
 function escapeHtml(str) {
     if (!str) return '';
     return str.replace(/[&<>]/g, function(m) {
@@ -841,6 +932,7 @@ function escapeHtml(str) {
     });
 }
 
+// Shows error message in content containers
 function showError(message) {
     const containers = ['json-work-experience', 'json-education', 'json-skills', 'json-interests', 'documents-grid', 'projects-container', 'impressum-content', 'datenschutz-content'];
     containers.forEach(id => {
@@ -853,6 +945,7 @@ function showError(message) {
 
 // ==================== ADD PASSWORD MODAL TO PAGE ====================
 
+// Injects password modal HTML into the page
 function addPasswordModal() {
     if (!document.getElementById('password-modal')) {
         document.body.insertAdjacentHTML('beforeend', passwordModalHTML);
@@ -868,7 +961,6 @@ function addPasswordModal() {
                 }
             });
         }
-        // Add close functionality to modal close button
         const closeBtn = document.querySelector('#password-modal .close');
         if (closeBtn) {
             closeBtn.addEventListener('click', closePasswordModal);
@@ -878,9 +970,11 @@ function addPasswordModal() {
 
 // ==================== MAIN INIT ====================
 
+// Main initialization function - loads data and renders page
 async function init() {
     console.log("CV Loader initializing...");
     
+    getLanguageFromStorage();
     addPasswordModal();
     
     const success = await loadAllJSON();
@@ -934,8 +1028,10 @@ async function init() {
     console.log("All data loaded and rendered");
 }
 
+// Start the application when DOM is ready
 document.addEventListener('DOMContentLoaded', init);
 
+// Expose functions for debugging/emergency reloads
 window.reloadCVData = () => init();
 window.testJSON = () => {
     alert(`JSON Status:\nResume: ${siteData.resume ? 'OK' : 'Missing'}\nPageContent: ${siteData.pageContent ? 'OK' : 'Missing'}\nDocuments: ${siteData.documents ? 'OK' : 'Missing'}\nProjects: ${siteData.projects ? 'OK' : 'Missing'}\nConfig: ${siteData.config ? 'OK' : 'Missing'}\nLegal: ${siteData.legal ? 'OK' : 'Missing'}`);

@@ -1,0 +1,97 @@
+{
+  "index": {
+    "welcome": {
+      "title": "Hello, I'm Maximilian",
+      "text": "I used to work in sales, but IT has always fascinated me. The retraining then brought a passion for hardware and technology. Sounds unusual? Maybe. But it feels right."
+    },
+    "aboutSections": [
+      {
+        "title": "Security has interested me for a while",
+        "text": "Even before I knew how to program, I was thinking about: How do you protect data? How do attackers think? What are the vulnerabilities? I read into it, searched for articles, watched reports. But I couldn't really get my hands on it back then.",
+        "image": "office-9582092_1920.png",
+        "imageAlt": "Security thinking"
+      },
+      {
+        "title": "Retraining brought technology into the mix",
+        "text": "With retraining, a whole new world opened up: programming, networks, servers – and eventually hardware. A Raspberry Pi here, a temperature sensor there. I started to understand how it all really works. Tinkering has hooked me. Even though I'm still at the beginning, I really enjoy building things myself.",
+        "image": "network-197303_1920.jpg",
+        "imageAlt": "Hardware and technology",
+        "reverse": true
+      },
+      {
+        "title": "Combining both makes sense to me",
+        "text": "The more I understand about technology, the clearer it becomes: security is not an extra, but part of everything. I want to combine both – tinkering with systems and having an eye for their vulnerabilities. Just programming or just security isn't enough for me. I want to understand how something works and how to protect it.",
+        "image": "computer-2162153_1920.jpg",
+        "imageAlt": "Technology and security"
+      }
+    ],
+    "gallery": {
+      "title": "Insights into my Website",
+      "images": [
+        "Darkmode.png",
+        "Loader.png",
+        "image.png",
+        "CSS.png",
+        "HTMLindex.png"
+      ]
+    }
+  },
+  "about": {
+    "title": "About Me",
+    "image1": "watermarked-e2468cd0-22a6-413a-8e14-d082a659f847.jpg",
+    "image2": "",
+    "text": "Born in Waldbröl, now at home in Castrop-Rauxel. I carry the down-to-earth values of Westphalia within me – and the Ruhr area has shaped me.\n\nMy path led me through the region: from automotive training in Ascheberg to customer consulting at Avedo and Kikxxl, to self-employment at Tecis, where I gained my first leadership experience and was able to lead sales projects.\n\nThere I learned what really counts: understanding people, recognizing needs and finding solutions – even when things don't go according to plan.\n\nI am now taking this experience with me into my new world: that of programming. My retraining as an IT specialist is not a change of direction. It is a development. I combine service thinking with coding skills to build bridges – between people and technology.\n\nIn the nature of Westphalia, during concentrated archery or playing guitar, I find the balance that also guides me in programming: patience, precision and the courage to create something new. And then there's the hardware – Raspberry Pi, sensors, small servers. Since retraining, tinkering has hooked me. Even though I'm still at the beginning, I really enjoy building things myself.\n\nMy goal is clear: I want to design digital solutions that are not only technically clean, but also humanly meaningful. A synthesis of Westphalian down-to-earthness, digital curiosity and an eye for security – because for me, one cannot exist without the other."
+  },
+  "cvPage": {
+    "searchTitle": "Search",
+    "linksTitle": "Links",
+    "contactTitle": "Contact",
+    "interestsTitle": "Interests",
+    "documentsTitle": "📄 My Documents",
+    "documentsSubtitle": "Here you can download or view my CV and other documents.",
+    "workTitle": "📁 Work Experience",
+    "educationTitle": "🎓 Education & Training",
+    "skillsJsonTitle": " Skills & Abilities",
+    "skillsTitle": " Skills & Abilities",
+    "progLangTitle": "🖳 Programming Languages",
+    "softskillsTitle": "☕ Soft Skills",
+    "languagesTitle": "🗣 Languages",
+    "otherTitle": "➯ Other",
+    "galleryTitle": "📷 Gallery",
+    "projectsTitle": "🚀 Projects",
+    "uploadTitle": "📤 Upload File",
+    "uploadText": "Upload your files here",
+    "uploadBtn": "Upload",
+    "formTitle": "📧 Contact Form",
+    "labelName": "Name",
+    "labelEmail": "Email",
+    "labelSubject": "Subject",
+    "labelMessage": "Message",
+    "submitBtn": "Submit",
+    "loadingText": "Loading data...",
+    "noDataText": "No data available"
+  },
+  "skillsData": {
+    "programmingLanguages": [
+      { "name": "HTML & CSS", "level": 65 },
+      { "name": "JavaScript", "level": 45 },
+      { "name": "Python", "level": 45 },
+      { "name": "Java", "level": 15 },
+      { "name": "SQL", "level": 65 }
+    ],
+    "softskills": [
+      { "name": "Teamwork", "level": 95 },
+      { "name": "Problem Solving", "level": 85 },
+      { "name": "Creativity", "level": 75 }
+    ],
+    "languages": [
+      { "name": "German (Native)", "level": 100 },
+      { "name": "English (B2)", "level": 80 },
+      { "name": "Spanish (Basics)", "level": 10 }
+    ],
+    "other": [
+      { "name": "Microsoft Office", "level": 75 },
+      { "name": "Driver's License Class B", "level": 100 }
+    ]
+  }
+}

@@ -6,7 +6,6 @@
         "title": "Angaben gemäß § 5 TMG",
         "content": [
           "{name}",
-          "{street}",
           "{city}",
           "{country}"
         ]
@@ -22,7 +21,6 @@
         "title": "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV",
         "content": [
           "{name}",
-          "{street}",
           "{city}",
           "{country}"
         ]
@@ -58,7 +56,6 @@
         "text": "Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:",
         "content": [
           "{name}",
-          "{street}",
           "{city}",
           "{country}",
           "Telefon: {phone}",

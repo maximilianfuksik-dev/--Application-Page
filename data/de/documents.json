@@ -74,9 +74,9 @@
     },
     {
       "id": "cert-python-dev",
-      "title": "Zertifikat Python Development",
+      "title": "Zertifikat Python Entwicklung",
       "icon": "🐍",
-      "description": "Fortgeschrittenes Python Development Zertifikat",
+      "description": "Fortgeschrittenes Python Entwicklungs Zertifikat",
       "path": "docs/cert/Maximilian-Fuksik Python Development.pdf",
       "uploadDate": "01.09.2025",
       "viewable": true,

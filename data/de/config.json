@@ -20,7 +20,7 @@
     "certificates": "certificate.html",
     "projects": "project.html",
     "contact": "contact.html",
-    "weiteres": "weiteres.html"
+    "more": "more.html"
   },
   "footer": {
     "impressum": "legalnotice.html",
@@ -43,7 +43,7 @@
       {
         "name": "Steam",
         "url": "https://steamcommunity.com/profiles/76561198119753169",
-        "icon": "🕹️"
+        "icon": "🎮"
       }
     ]
   }

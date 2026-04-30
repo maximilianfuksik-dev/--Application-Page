@@ -26,7 +26,7 @@
       }
     ],
     "gallery": {
-      "title": "Einblicke in meine Webpage",
+      "title": "Einblicke in meine Webseite",
       "images": [
         "Darkmode.png",
         "Loader.png",
@@ -51,15 +51,25 @@
     "documentsSubtitle": "Hier können Sie meinen Lebenslauf und weitere Unterlagen herunterladen oder direkt ansehen.",
     "workTitle": "📁 Berufserfahrung",
     "educationTitle": "🎓 Ausbildung & Weiterbildung",
-    "skillsTitle": "⭐ Kenntnisse & Fähigkeiten",
+    "skillsJsonTitle": " Kenntnisse & Fähigkeiten",
+    "skillsTitle": " Kenntnisse & Fähigkeiten",
     "progLangTitle": "🖳 Programmiersprachen",
     "softskillsTitle": "☕ Softskills",
     "languagesTitle": "🗣 Sprachen",
     "otherTitle": "➯ Sonstiges",
-    "drivingLicense": "🚗 Führerschein",
+    "galleryTitle": "📷 Galerie",
+    "projectsTitle": "🚀 Projekte",
+    "uploadTitle": "📤 Datei hochladen",
+    "uploadText": "Laden Sie hier Ihre Dateien hoch",
+    "uploadBtn": "Hochladen",
+    "formTitle": "📧 Kontaktformular",
+    "labelName": "Name",
+    "labelEmail": "E-Mail",
+    "labelSubject": "Betreff",
+    "labelMessage": "Nachricht",
+    "submitBtn": "Absenden",
     "loadingText": "Lade Daten...",
-    "noDataText": "Keine Daten vorhanden",
-    "footerText": "Impressum | Datenschutz | Kontakt | © {year} Maximilian Fuksik. Alle Rechte vorbehalten."
+    "noDataText": "Keine Daten vorhanden"
   },
   "skillsData": {
     "programmingLanguages": [

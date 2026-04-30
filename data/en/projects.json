@@ -1,0 +1,17 @@
+{
+  "title": "My Projects",
+  "items": [
+    {
+      "name": "Application Page",
+      "description": "Personal portfolio website with HTML, CSS and JavaScript",
+      "link": "https://github.com/maximilianfuksik-dev/-Application-Page",
+      "image": "project1.jpg"
+    },
+    {
+      "name": "Digital Clock",
+      "description": "A simple digital clock",
+      "link": "https://github.com/maximilianfuksik-dev/DigitalClock",
+      "image": ""
+    }
+  ]
+}

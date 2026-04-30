@@ -9,8 +9,9 @@
     },
     {
       "name": "Digital Clock",
-      "description": "Eine einfache Digital Uhr ",
-      "link": "https://github.com/maximilianfuksik-dev/DigitalClock"
+      "description": "Eine einfache Digitaluhr",
+      "link": "https://github.com/maximilianfuksik-dev/DigitalClock",
+      "image": ""
     }
   ]
 }

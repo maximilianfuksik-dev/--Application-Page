@@ -1,0 +1,133 @@
+{
+  "impressum": {
+    "title": "Legal Notice",
+    "sections": {
+      "accordingTo": {
+        "title": "Information according to § 5 TMG",
+        "content": [
+          "{name}",
+          "{city}",
+          "{country}"
+        ]
+      },
+      "contact": {
+        "title": "Contact",
+        "content": [
+          "Phone: {phone}",
+          "Email: {email}"
+        ]
+      },
+      "responsible": {
+        "title": "Responsible for content according to § 55 Abs. 2 RStV",
+        "content": [
+          "{name}",
+          "{city}",
+          "{country}"
+        ]
+      },
+      "disclaimer": {
+        "title": "Disclaimer",
+        "subsections": {
+          "liabilityContent": {
+            "title": "Liability for Content",
+            "text": "As a service provider, we are responsible for our own content on these pages in accordance with general laws pursuant to § 7 Abs.1 TMG. However, according to §§ 8 to 10 TMG, we as a service provider are not obliged to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity."
+          },
+          "liabilityLinks": {
+            "title": "Liability for Links",
+            "text": "Our website contains links to external third-party websites over whose content we have no influence. Therefore, we cannot assume any liability for this external content. The respective provider or operator of the linked pages is always responsible for their content."
+          },
+          "copyright": {
+            "title": "Copyright",
+            "text": "The content and works created by the site operators on these pages are subject to German copyright law. Duplication, processing, distribution, and any form of commercialization beyond the scope of copyright law require the written consent of the respective author or creator."
+          }
+        }
+      },
+      "euSettlement": {
+        "title": "EU Dispute Resolution",
+        "text": "The European Commission provides a platform for online dispute resolution (ODR): https://ec.europa.eu/consumers/odr/. Our email address can be found above in the legal notice."
+      }
+    }
+  },
+  "datenschutz": {
+    "title": "Privacy Policy",
+    "sections": {
+      "responsible": {
+        "title": "1. Responsible Party",
+        "text": "The responsible party within the meaning of the General Data Protection Regulation (GDPR) is:",
+        "content": [
+          "{name}",
+          "{city}",
+          "{country}",
+          "Phone: {phone}",
+          "Email: {email}"
+        ]
+      },
+      "dataCollection": {
+        "title": "2. Collection and Processing of Personal Data",
+        "subsections": {
+          "websiteVisit": {
+            "title": "a) When Visiting the Website",
+            "text": "Each time you access our website, our web hosting provider automatically collects information and stores it in so-called server log files. This includes:",
+            "list": [
+              "IP address of the requesting device",
+              "Date and time of access",
+              "Name and URL of the retrieved file",
+              "Amount of data transferred",
+              "Message indicating whether retrieval was successful",
+              "Browser type and version",
+              "Operating system"
+            ],
+            "legalText": "This data is not merged with other data sources. Processing is carried out in accordance with Art. 6 para. 1 lit. f GDPR based on our legitimate interest in ensuring the smooth operation of the website."
+          },
+          "contact": {
+            "title": "b) When Contacting Us",
+            "text": "If you contact us by email or contact form, the data you provide (name, email address, message) will be stored by us to process your request."
+          }
+        }
+      },
+      "cookies": {
+        "title": "3. Cookies",
+        "text": "This website uses technically necessary cookies that are required for the operation of the website:",
+        "list": [
+          "Dark/Light Mode setting"
+        ],
+        "legalText": "These cookies are only stored on your device and serve exclusively the functionality of the website. No tracking for analysis or marketing purposes takes place."
+      },
+      "externalServices": {
+        "title": "4. External Content and Services",
+        "subsections": {
+          "github": {
+            "title": "GitHub",
+            "text": "This website includes links to my GitHub profile. Clicking these links will take you to the website of GitHub Inc. The privacy policy of GitHub applies."
+          },
+          "linkedin": {
+            "title": "LinkedIn",
+            "text": "Links to LinkedIn are also integrated. The operator is LinkedIn Corporation. When calling these links, LinkedIn's privacy policy applies."
+          }
+        }
+      },
+      "userRights": {
+        "title": "5. Your Rights",
+        "text": "You have the following rights with respect to your personal data:",
+        "list": [
+          "Right to access (Art. 15 GDPR)",
+          "Right to rectification (Art. 16 GDPR)",
+          "Right to erasure (Art. 17 GDPR)",
+          "Right to restriction of processing (Art. 18 GDPR)",
+          "Right to data portability (Art. 20 GDPR)",
+          "Right to object (Art. 21 GDPR)"
+        ],
+        "legalText": "You also have the right to lodge a complaint with a data protection supervisory authority about our processing of your personal data."
+      },
+      "dataSecurity": {
+        "title": "6. Data Security",
+        "text": "We use technical and organizational security measures to protect your data against accidental or intentional manipulation, loss, destruction, or against access by unauthorized persons."
+      },
+      "changes": {
+        "title": "7. Changes to this Privacy Policy",
+        "text": "We reserve the right to update this privacy policy to ensure that it always complies with current legal requirements or to implement changes to our services in the privacy policy.",
+        "lastUpdated": "January 2025"
+      }
+    }
+  }
+}

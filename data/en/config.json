@@ -1,0 +1,50 @@
+{
+  "site": {
+    "title": "Maximilian Fuksik",
+    "defaultTheme": "light",
+    "autoDarkMode": true
+  },
+  "paths": {
+    "images": "assets/images/",
+    "certificates": "assets/certificates/"
+  },
+  "social": {
+    "github": "https://github.com/maximilianfuksik-dev",
+    "linkedin": "https://linkedin.com/in/dein-profil",
+    "email": "maximilianfuksik@gmail.com"
+  },
+  "navigation": {
+    "home": "index.html",
+    "about": "about.html",
+    "cv": "cv.html",
+    "certificates": "certificate.html",
+    "projects": "project.html",
+    "contact": "contact.html",
+    "more": "more.html"
+  },
+  "footer": {
+    "impressum": "legalnotice.html",
+    "datenschutz": "privacypolicy.html",
+    "contact": "contact.html"
+  },
+  "sidebar": {
+    "searchPlaceholder": "Search...",
+    "socialLinks": [
+      {
+        "name": "GitHub",
+        "url": "https://github.com/maximilianfuksik-dev",
+        "icon": "🐙"
+      },
+      {
+        "name": "LinkedIn",
+        "url": "https://linkedin.com/in/dein-profil",
+        "icon": "💼"
+      },
+      {
+        "name": "Steam",
+        "url": "https://steamcommunity.com/profiles/76561198119753169",
+        "icon": "🎮"
+      }
+    ]
+  }
+}

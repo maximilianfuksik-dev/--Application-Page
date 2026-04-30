@@ -45,38 +45,51 @@ The website serves as:
 - **Modular JavaScript** – Clean separation of concerns
 - **No external dependencies** – Pure HTML/CSS/JS, no frameworks
 
-##  Project Structure
-website/
+projekt-root/
 │
-├── index.html # Homepage
-├── about.html # About me page
-├── cv.html # CV / Resume page
-├── certificate.html # Certificates page
-├── project.html # Projects showcase
-├── contact.html # Contact page (WIP)
-├── weiteres.html # Additional content page
-│
-├── legal/
-│ ├── legalnotice.html # Impressum (German legal notice)
-│ └── privacypolicy.html # Privacy policy
+├── index.html
+├── about.html
+├── cv.html
+├── certificate.html
+├── project.html
+├── contact.html
+├── legalnotice.html
+├── privacypolicy.html
 │
 ├── assets/
-│ ├── css/
-│ │ └── stylesheet.css # Main styles (light mode)
-│ ├── js/
-│ │ ├── cv-loader.js # JSON data loader & renderer
-│ │ └── script.js # UI utilities (clock, modal, dark mode)
-│ └── images/ # All images and favicon
+│   ├── css/
+│   │   ├── stylesheet.css      (Light Mode)
+│   │   └── styledark.css       (Dark Mode)
+│   │
+│   ├── js/
+│   │   ├── cv-loader.js        (Navigation, Sprachumschalter, JSON loading)
+│   │   └── script.js           (Clock, Modal, Dark Mode, Skill Bars, Lightbox)
+│   │
+│   └── images
 │
 ├── data/
-│ ├── config.json # Navigation, social links, footer
-│ ├── resume.json # Work experience, education, skills
-│ ├── pageContent.json # All texts for all pages
-│ ├── documents.json # CV and certificate documents
-│ ├── projects.json # Project data
-│ └── legal.json # Legal texts (Impressum, Privacy)
+│   ├── de/
+│   │   ├── resume.json
+│   │   ├── pageContent.json
+│   │   ├── documents.json
+│   │   ├── projects.json
+│   │   ├── config.json
+│   │   └── legal.json
+│   │
+│   └── en/
+│       ├── resume.json
+│       ├── pageContent.json
+│       ├── documents.json
+│       ├── projects.json
+│       ├── config.json
+│       └── legal.json
 │
-├── docs/ # Downloadable documents (CV, etc.)
-├── certificates/ # Certificate PDF files
-│
-└── README.md # This file
+└── docs/
+    ├── bwg/ CV.pdf
+    └── cert/
+        ├── certificate HTML.pdf
+        ├── certificate CSS.pdf
+        ├── certificate Java Script.pdf
+        ├── certificate SQL.pdf
+        ├── certificate Python.pdf
+        └── Maximilian-Fuksik Python Development.pdf

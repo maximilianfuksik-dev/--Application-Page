@@ -18,13 +18,12 @@ let currentLang = 'de'; // default: German
 const langNames = { de: 'Deutsch', en: 'English' };
 
 // ==================== PASSWORD PROTECTION ====================
-
 // Password for protected documents
 const DOCS_PASSWORD = '2026';
 
 // List of protected documents (by title or path)
 const PROTECTED_DOCS = [
-    'Lebenslauf', 'cv', 'CV', 'Zertifikat', 'certificate',
+    'Lebenslauf', 'cv', 'CV', 'Zertifikat', 'certificate', 
     'HTML', 'CSS', 'JavaScript', 'SQL', 'Python'
 ];
 
@@ -102,7 +101,6 @@ function handleDocumentAccess(docPath, docTitle) {
 }
 
 // ==================== LANGUAGE SWITCHER ====================
-
 // Changes the current language and reloads content
 function setLanguage(lang) {
     if (lang === 'de' || lang === 'en') {
@@ -123,7 +121,6 @@ function getLanguageFromStorage() {
 }
 
 // ==================== JSON LOADER ====================
-
 // Builds file path based on current language
 function getDataPath(filename) {
     return `data/${currentLang}/${filename}.json`;
@@ -132,7 +129,6 @@ function getDataPath(filename) {
 // Loads all JSON files for current language
 async function loadAllJSON() {
     console.log(`Loading all JSON files (${currentLang})...`);
-    
     const files = {
         resume: getDataPath('resume'),
         pageContent: getDataPath('pageContent'),
@@ -158,7 +154,6 @@ async function loadAllJSON() {
                 siteData[key] = null;
             }
         });
-        
         await Promise.all(promises);
         console.log("All JSON files processed");
         return true;
@@ -169,7 +164,6 @@ async function loadAllJSON() {
 }
 
 // ==================== PAGE DETECTION ====================
-
 // Detects current page from URL filename
 function getCurrentPage() {
     const path = window.location.pathname;
@@ -179,7 +173,7 @@ function getCurrentPage() {
     return pageName;
 }
 
-// Renders navigation menu from config
+// Renders navigation menu from config (with dynamic labels based on language)
 function renderNavigation() {
     const config = siteData.config;
     if (!config?.navigation) return;
@@ -204,23 +198,47 @@ function renderNavigation() {
     
     // ========== CENTER: Navigation Links ==========
     const ul = document.createElement('ul');
-    const navItems = [
-        { name: "Home", key: "home", icon: "🏠︎" },
-        { name: "About", key: "about", icon: "𓂃🖊" },
-        { name: "CV", key: "cv", icon: "" },
-        { name: "Certificates", key: "certificates", icon: "🗐" },
-        { name: "Projects", key: "projects", icon: "🗒" },
-        { name: "Contact", key: "contact", icon: "✉" }
-    ];
     
-    navItems.forEach(item => {
-        const path = config.navigation[item.key];
-        if (path) {
+    // Define navigation items in order
+    const navOrder = ['home', 'about', 'cv', 'certificates', 'projects', 'contact'];
+    
+    // Icon mapping
+    const iconMap = {
+        home: "🏠",
+        about: "👤",
+        cv: "📄",
+        certificates: "📜",
+        projects: "💻",
+        contact: "✉️",
+        
+    };
+    
+    navOrder.forEach(key => {
+        const navItem = config.navigation[key];
+        if (navItem && navItem.path) {
+            // Get label from config (supports both old and new structure)
+            let label = '';
+            
+            // Priority 1: Use navigationLabels if they exist in config
+            if (config.navigationLabels && config.navigationLabels[currentLang] && config.navigationLabels[currentLang][key]) {
+                label = config.navigationLabels[currentLang][key];
+            }
+            // Priority 2: Use the label field in navigation item (if exists)
+            else if (navItem.label) {
+                label = navItem.label;
+            }
+            // Priority 3: Fallback - capitalize the key
+            else {
+                label = key.charAt(0).toUpperCase() + key.slice(1);
+            }
+            
+            const icon = iconMap[key] || '';
             const li = document.createElement('li');
-            li.innerHTML = `<a href="${path}"> ${item.icon} ${item.name}</a>`;
+            li.innerHTML = `<a href="${navItem.path}">${icon} ${label}</a>`;
             ul.appendChild(li);
         }
     });
+    
     nav.appendChild(ul);
     
     // ========== RIGHT: Dark Mode ==========
@@ -248,13 +266,11 @@ function renderNavigation() {
     // ========== FIX: Re-attach Dark Mode event listener ==========
     const darkModeCheckbox = document.getElementById('toggle-checkbox');
     const themeStylesheet = document.getElementById('light');
-    
     if (darkModeCheckbox && themeStylesheet) {
         // Load saved theme
         const userTheme = localStorage.getItem('theme');
         const now = new Date();
         const hours = now.getHours();
-        
         let initialTheme;
         if (userTheme) {
             initialTheme = userTheme;
@@ -275,7 +291,6 @@ function renderNavigation() {
         // Remove existing listeners and add new one
         const newCheckbox = darkModeCheckbox.cloneNode(true);
         darkModeCheckbox.parentNode.replaceChild(newCheckbox, darkModeCheckbox);
-        
         newCheckbox.addEventListener("change", function() {
             const newTheme = this.checked ? "dark" : "light";
             setTheme(newTheme);
@@ -283,7 +298,7 @@ function renderNavigation() {
         });
     }
     
-    console.log("Navigation rendered");
+    console.log("Navigation rendered with language:", currentLang);
 }
 
 // Renders social media links in sidebar
@@ -304,7 +319,6 @@ function renderSocialLinks() {
             </a>
         `;
     });
-    
     container.innerHTML = html;
     console.log("Social links rendered");
 }
@@ -390,7 +404,7 @@ function renderPageTexts() {
     });
 }
 
-// Renders contact information (without street address)
+// Renders contact information (without phone number on contact page)
 function renderContactInfo() {
     const info = siteData.resume?.personalInfo;
     const container = document.getElementById('json-contact');
@@ -406,9 +420,8 @@ function renderContactInfo() {
     const country = info.address?.country || '';
     const locationText = cityOnly + (country ? `, ${country}` : '');
     
-        container.innerHTML = `
+    container.innerHTML = `
         <p>📧 <span class="json-email">${escapeHtml(info.email)}</span></p>
-        <p>📞 <span class="json-phone">${escapeHtml(info.phone)}</span></p>
         <p>📍 <span class="json-location">${escapeHtml(locationText)}</span></p>
     `;
     console.log("Contact info loaded");
@@ -439,7 +452,6 @@ function renderDocuments(type = 'all') {
     const container = document.getElementById('documents-grid');
     const documents = siteData.documents?.documents;
     const texts = siteData.pageContent?.cvPage;
-    
     if (!container) return;
     
     if (!documents || documents.length === 0) {
@@ -476,7 +488,6 @@ function renderDocuments(type = 'all') {
             </div>
         `;
     });
-    
     container.innerHTML = html;
     console.log(`${filteredDocs.length} documents loaded (type: ${type})`);
     
@@ -514,19 +525,20 @@ function renderWorkExperience() {
     experiences.forEach((job, idx) => {
         const isLast = idx === experiences.length - 1;
         html += `
-        <div class="work-item ${isLast ? 'last' : ''}">
-            <div class="job-header">
-                <h3>${escapeHtml(job.position)}</h3>
-                <div class="job-meta">
-                    <span class="company">${escapeHtml(job.company)}</span>
-                    <span class="location">${escapeHtml(job.location)}</span>
-                    <span class="period">${escapeHtml(job.period)}</span>
+            <div class="work-item ${isLast ? 'last' : ''}">
+                <div class="job-header">
+                    <h3>${escapeHtml(job.position)}</h3>
+                    <div class="job-meta">
+                        <span class="company">${escapeHtml(job.company)}</span>
+                        <span class="location">${escapeHtml(job.location)}</span>
+                        <span class="period">${escapeHtml(job.period)}</span>
+                    </div>
                 </div>
+                <ul class="job-responsibilities">
+                    ${job.responsibilities.map(r => `<li>${escapeHtml(r)}</li>`).join('')}
+                </ul>
             </div>
-            <ul class="job-responsibilities">
-                ${job.responsibilities.map(r => `<li>${escapeHtml(r)}</li>`).join('')}
-            </ul>
-        </div>`;
+        `;
     });
     container.innerHTML = html;
     console.log(`${experiences.length} work experiences loaded`);
@@ -548,15 +560,16 @@ function renderEducation() {
     education.forEach((edu, idx) => {
         const isLast = idx === education.length - 1;
         html += `
-        <div class="education-item ${isLast ? 'last' : ''}">
-            <div class="education-header">
-                <h3>${escapeHtml(edu.program)}</h3>
-                <div class="education-meta">
-                    <span class="institution">${escapeHtml(edu.institution)}</span>
-                    <span class="period">${escapeHtml(edu.period)}</span>
+            <div class="education-item ${isLast ? 'last' : ''}">
+                <div class="education-header">
+                    <h3>${escapeHtml(edu.program)}</h3>
+                    <div class="education-meta">
+                        <span class="institution">${escapeHtml(edu.institution)}</span>
+                        <span class="period">${escapeHtml(edu.period)}</span>
+                    </div>
                 </div>
             </div>
-        </div>`;
+        `;
     });
     container.innerHTML = html;
     console.log(`${education.length} education items loaded`);
@@ -577,37 +590,45 @@ function renderSkillsFromJSON() {
     let html = '<div class="skills-container">';
     
     if (skills.languages?.length) {
-        html += `<div class="skills-category">
-            <h4>Languages</h4>
-            <div class="skills-list languages">
-                ${skills.languages.map(l => `<span class="skill-tag">${escapeHtml(l.language)} (${l.level})</span>`).join('')}
+        html += `
+            <div class="skills-category">
+                <h4>Languages</h4>
+                <div class="skills-list languages">
+                    ${skills.languages.map(l => `<span class="skill-tag">${escapeHtml(l.language)} (${l.level})</span>`).join('')}
+                </div>
             </div>
-        </div>`;
+        `;
     }
     
     if (skills.software?.length) {
-        html += `<div class="skills-category">
-            <h4>Software & Technologies</h4>
-            <div class="skills-list software">
-                ${skills.software.map(s => `<span class="skill-tag">${escapeHtml(s.name)} (${s.level})</span>`).join('')}
+        html += `
+            <div class="skills-category">
+                <h4>Software & Technologies</h4>
+                <div class="skills-list software">
+                    ${skills.software.map(s => `<span class="skill-tag">${escapeHtml(s.name)} (${s.level})</span>`).join('')}
+                </div>
             </div>
-        </div>`;
+        `;
     }
     
     if (skills.drivingLicense) {
-        html += `<div class="skills-category">
-            <h4>Driving License</h4>
-            <p class="license">${escapeHtml(skills.drivingLicense)}</p>
-        </div>`;
+        html += `
+            <div class="skills-category">
+                <h4>Driving License</h4>
+                <p class="license">${escapeHtml(skills.drivingLicense)}</p>
+            </div>
+        `;
     }
     
     if (skills.abilities?.length) {
-        html += `<div class="skills-category">
-            <h4>Personal Abilities</h4>
-            <div class="skills-list abilities">
-                ${skills.abilities.map(a => `<span class="skill-tag">${escapeHtml(a)}</span>`).join('')}
+        html += `
+            <div class="skills-category">
+                <h4>Personal Abilities</h4>
+                <div class="skills-list abilities">
+                    ${skills.abilities.map(a => `<span class="skill-tag">${escapeHtml(a)}</span>`).join('')}
+                </div>
             </div>
-        </div>`;
+        `;
     }
     
     html += '</div>';
@@ -668,7 +689,6 @@ function renderManualSkills() {
             if (level) bar.style.width = level + '%';
         });
     }
-    
     console.log("Manual skills rendered from pageContent.json");
 }
 
@@ -690,15 +710,16 @@ function renderIndexPage() {
                 const reverseClass = section.reverse ? 'reverse' : '';
                 const imagePath = section.image ? `assets/images/${section.image}` : '';
                 html += `
-                <div class="about-item ${reverseClass}">
-                    <div class="about-image">
-                        ${imagePath ? `<img src="${imagePath}" alt="${escapeHtml(section.imageAlt || 'Image')}">` : ''}
+                    <div class="about-item ${reverseClass}">
+                        <div class="about-image">
+                            ${imagePath ? `<img src="${imagePath}" alt="${escapeHtml(section.imageAlt || 'Image')}">` : ''}
+                        </div>
+                        <div class="about-text">
+                            <h2>${escapeHtml(section.title)}</h2>
+                            <p>${escapeHtml(section.text)}</p>
+                        </div>
                     </div>
-                    <div class="about-text">
-                        <h2>${escapeHtml(section.title)}</h2>
-                        <p>${escapeHtml(section.text)}</p>
-                    </div>
-                </div>`;
+                `;
             });
             container.innerHTML = html;
         }
@@ -724,7 +745,6 @@ function renderAboutPage() {
     if (!content) return;
     
     setText('#about-title-1', content.title);
-    
     const textEl = document.getElementById('about-text-1');
     if (textEl && content.text) {
         const formattedText = content.text.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
@@ -753,7 +773,6 @@ function renderProjects() {
     const container = document.getElementById('projects-container');
     const projects = siteData.projects?.items || siteData.projects?.projects;
     const texts = siteData.pageContent?.cvPage;
-    
     if (!container) return;
     
     if (!projects || projects.length === 0) {
@@ -776,7 +795,7 @@ function renderProjects() {
     console.log(`${projects.length} projects loaded`);
 }
 
-// Renders impressum/legal notice page
+// Renders impressum/legal notice page (with phone number)
 function renderImpressum() {
     const container = document.getElementById('impressum-content');
     const legal = siteData.legal?.impressum;
@@ -801,60 +820,70 @@ function renderImpressum() {
     let html = `<h1>${legal.title}</h1>`;
     
     if (legal.sections?.accordingTo) {
-        html += `<section class="impressum-section">
-            <h2>${legal.sections.accordingTo.title}</h2>
-            <div class="impressum-details">
-                ${legal.sections.accordingTo.content.map(line => `<p>${replacePlaceholders(line)}</p>`).join('')}
-            </div>
-        </section>`;
+        html += `
+            <section class="impressum-section">
+                <h2>${legal.sections.accordingTo.title}</h2>
+                <div class="impressum-details">
+                    ${legal.sections.accordingTo.content.map(line => `<p>${replacePlaceholders(line)}</p>`).join('')}
+                </div>
+            </section>
+        `;
     }
     
     if (legal.sections?.contact) {
-        html += `<section class="impressum-section">
-            <h2>${legal.sections.contact.title}</h2>
-            <div class="impressum-details">
-                ${legal.sections.contact.content.map(line => `<p>${replacePlaceholders(line)}</p>`).join('')}
-            </div>
-        </section>`;
+        html += `
+            <section class="impressum-section">
+                <h2>${legal.sections.contact.title}</h2>
+                <div class="impressum-details">
+                    ${legal.sections.contact.content.map(line => `<p>${replacePlaceholders(line)}</p>`).join('')}
+                </div>
+            </section>
+        `;
     }
     
     if (legal.sections?.responsible) {
-        html += `<section class="impressum-section">
-            <h2>${legal.sections.responsible.title}</h2>
-            <div class="impressum-details">
-                ${legal.sections.responsible.content.map(line => `<p>${replacePlaceholders(line)}</p>`).join('')}
-            </div>
-        </section>`;
+        html += `
+            <section class="impressum-section">
+                <h2>${legal.sections.responsible.title}</h2>
+                <div class="impressum-details">
+                    ${legal.sections.responsible.content.map(line => `<p>${replacePlaceholders(line)}</p>`).join('')}
+                </div>
+            </section>
+        `;
     }
     
     if (legal.sections?.disclaimer) {
-        html += `<section class="impressum-section">
-            <h2>${legal.sections.disclaimer.title}</h2>
-            <div class="impressum-details">
-                <h3>${legal.sections.disclaimer.subsections.liabilityContent.title}</h3>
-                <p>${legal.sections.disclaimer.subsections.liabilityContent.text}</p>
-                <h3>${legal.sections.disclaimer.subsections.liabilityLinks.title}</h3>
-                <p>${legal.sections.disclaimer.subsections.liabilityLinks.text}</p>
-                <h3>${legal.sections.disclaimer.subsections.copyright.title}</h3>
-                <p>${legal.sections.disclaimer.subsections.copyright.text}</p>
-            </div>
-        </section>`;
+        html += `
+            <section class="impressum-section">
+                <h2>${legal.sections.disclaimer.title}</h2>
+                <div class="impressum-details">
+                    <h3>${legal.sections.disclaimer.subsections.liabilityContent.title}</h3>
+                    <p>${legal.sections.disclaimer.subsections.liabilityContent.text}</p>
+                    <h3>${legal.sections.disclaimer.subsections.liabilityLinks.title}</h3>
+                    <p>${legal.sections.disclaimer.subsections.liabilityLinks.text}</p>
+                    <h3>${legal.sections.disclaimer.subsections.copyright.title}</h3>
+                    <p>${legal.sections.disclaimer.subsections.copyright.text}</p>
+                </div>
+            </section>
+        `;
     }
     
     if (legal.sections?.euSettlement) {
-        html += `<section class="impressum-section">
-            <h2>${legal.sections.euSettlement.title}</h2>
-            <div class="impressum-details">
-                <p>${legal.sections.euSettlement.text}</p>
-            </div>
-        </section>`;
+        html += `
+            <section class="impressum-section">
+                <h2>${legal.sections.euSettlement.title}</h2>
+                <div class="impressum-details">
+                    <p>${legal.sections.euSettlement.text}</p>
+                </div>
+            </section>
+        `;
     }
     
     container.innerHTML = html;
-    console.log("Impressum rendered");
+    console.log("Impressum rendered with phone number");
 }
 
-// Renders privacy policy page
+// Renders privacy policy page (with phone number)
 function renderDatenschutz() {
     const container = document.getElementById('datenschutz-content');
     const legal = siteData.legal?.datenschutz;
@@ -879,88 +908,101 @@ function renderDatenschutz() {
     let html = `<h1>${legal.title}</h1>`;
     
     if (legal.sections?.responsible) {
-        html += `<section class="datenschutz-section">
-            <h2>${legal.sections.responsible.title}</h2>
-            <div class="datenschutz-details">
-                <p>${legal.sections.responsible.text || ''}</p>
-                ${legal.sections.responsible.content.map(line => `<p>${replacePlaceholders(line)}</p>`).join('')}
-            </div>
-        </section>`;
+        html += `
+            <section class="datenschutz-section">
+                <h2>${legal.sections.responsible.title}</h2>
+                <div class="datenschutz-details">
+                    <p>${legal.sections.responsible.text || ''}</p>
+                    ${legal.sections.responsible.content.map(line => `<p>${replacePlaceholders(line)}</p>`).join('')}
+                </div>
+            </section>
+        `;
     }
     
     if (legal.sections?.dataCollection) {
-        html += `<section class="datenschutz-section">
-            <h2>${legal.sections.dataCollection.title}</h2>
-            <div class="datenschutz-details">
-                <h3>${legal.sections.dataCollection.subsections.websiteVisit.title}</h3>
-                <p>${legal.sections.dataCollection.subsections.websiteVisit.text}</p>
-                <ul>${legal.sections.dataCollection.subsections.websiteVisit.list.map(item => `<li>${item}</li>`).join('')}</ul>
-                <p>${legal.sections.dataCollection.subsections.websiteVisit.legalText}</p>
-                <h3>${legal.sections.dataCollection.subsections.contact.title}</h3>
-                <p>${legal.sections.dataCollection.subsections.contact.text}</p>
-            </div>
-        </section>`;
+        html += `
+            <section class="datenschutz-section">
+                <h2>${legal.sections.dataCollection.title}</h2>
+                <div class="datenschutz-details">
+                    <h3>${legal.sections.dataCollection.subsections.websiteVisit.title}</h3>
+                    <p>${legal.sections.dataCollection.subsections.websiteVisit.text}</p>
+                    <ul>${legal.sections.dataCollection.subsections.websiteVisit.list.map(item => `<li>${item}</li>`).join('')}</ul>
+                    <p>${legal.sections.dataCollection.subsections.websiteVisit.legalText}</p>
+                    <h3>${legal.sections.dataCollection.subsections.contact.title}</h3>
+                    <p>${legal.sections.dataCollection.subsections.contact.text}</p>
+                </div>
+            </section>
+        `;
     }
     
     if (legal.sections?.cookies) {
-        html += `<section class="datenschutz-section">
-            <h2>${legal.sections.cookies.title}</h2>
-            <div class="datenschutz-details">
-                <p>${legal.sections.cookies.text}</p>
-                <ul>${legal.sections.cookies.list.map(item => `<li>${item}</li>`).join('')}</ul>
-                <p>${legal.sections.cookies.legalText}</p>
-            </div>
-        </section>`;
+        html += `
+            <section class="datenschutz-section">
+                <h2>${legal.sections.cookies.title}</h2>
+                <div class="datenschutz-details">
+                    <p>${legal.sections.cookies.text}</p>
+                    <ul>${legal.sections.cookies.list.map(item => `<li>${item}</li>`).join('')}</ul>
+                    <p>${legal.sections.cookies.legalText}</p>
+                </div>
+            </section>
+        `;
     }
     
     if (legal.sections?.externalServices) {
-        html += `<section class="datenschutz-section">
-            <h2>${legal.sections.externalServices.title}</h2>
-            <div class="datenschutz-details">
-                <h3>${legal.sections.externalServices.subsections.github.title}</h3>
-                <p>${legal.sections.externalServices.subsections.github.text}</p>
-                <h3>${legal.sections.externalServices.subsections.linkedin.title}</h3>
-                <p>${legal.sections.externalServices.subsections.linkedin.text}</p>
-            </div>
-        </section>`;
+        html += `
+            <section class="datenschutz-section">
+                <h2>${legal.sections.externalServices.title}</h2>
+                <div class="datenschutz-details">
+                    <h3>${legal.sections.externalServices.subsections.github.title}</h3>
+                    <p>${legal.sections.externalServices.subsections.github.text}</p>
+                    <h3>${legal.sections.externalServices.subsections.linkedin.title}</h3>
+                    <p>${legal.sections.externalServices.subsections.linkedin.text}</p>
+                </div>
+            </section>
+        `;
     }
     
     if (legal.sections?.userRights) {
-        html += `<section class="datenschutz-section">
-            <h2>${legal.sections.userRights.title}</h2>
-            <div class="datenschutz-details">
-                <p>${legal.sections.userRights.text}</p>
-                <ul>${legal.sections.userRights.list.map(item => `<li>${item}</li>`).join('')}</ul>
-                <p>${legal.sections.userRights.legalText}</p>
-            </div>
-        </section>`;
+        html += `
+            <section class="datenschutz-section">
+                <h2>${legal.sections.userRights.title}</h2>
+                <div class="datenschutz-details">
+                    <p>${legal.sections.userRights.text}</p>
+                    <ul>${legal.sections.userRights.list.map(item => `<li>${item}</li>`).join('')}</ul>
+                    <p>${legal.sections.userRights.legalText}</p>
+                </div>
+            </section>
+        `;
     }
     
     if (legal.sections?.dataSecurity) {
-        html += `<section class="datenschutz-section">
-            <h2>${legal.sections.dataSecurity.title}</h2>
-            <div class="datenschutz-details">
-                <p>${legal.sections.dataSecurity.text}</p>
-            </div>
-        </section>`;
+        html += `
+            <section class="datenschutz-section">
+                <h2>${legal.sections.dataSecurity.title}</h2>
+                <div class="datenschutz-details">
+                    <p>${legal.sections.dataSecurity.text}</p>
+                </div>
+            </section>
+        `;
     }
     
     if (legal.sections?.changes) {
-        html += `<section class="datenschutz-section">
-            <h2>${legal.sections.changes.title}</h2>
-            <div class="datenschutz-details">
-                <p>${legal.sections.changes.text}</p>
-                <p><strong>Last updated:</strong> ${legal.sections.changes.lastUpdated}</p>
-            </div>
-        </section>`;
+        html += `
+            <section class="datenschutz-section">
+                <h2>${legal.sections.changes.title}</h2>
+                <div class="datenschutz-details">
+                    <p>${legal.sections.changes.text}</p>
+                    <p><strong>Last updated:</strong> ${legal.sections.changes.lastUpdated}</p>
+                </div>
+            </section>
+        `;
     }
     
     container.innerHTML = html;
-    console.log("Privacy policy rendered");
+    console.log("Privacy policy rendered with phone number");
 }
 
 // ==================== HELPER FUNCTIONS ====================
-
 // Sets text content of an element by selector
 function setText(selector, text) {
     if (!text) return;
@@ -991,7 +1033,6 @@ function showError(message) {
 }
 
 // ==================== ADD PASSWORD MODAL TO PAGE ====================
-
 // Injects password modal HTML into the page
 function addPasswordModal() {
     if (!document.getElementById('password-modal')) {
@@ -1016,11 +1057,9 @@ function addPasswordModal() {
 }
 
 // ==================== MAIN INIT ====================
-
 // Main initialization function - loads data and renders page
 async function init() {
     console.log("CV Loader initializing...");
-    
     getLanguageFromStorage();
     addPasswordModal();
     
@@ -1031,7 +1070,6 @@ async function init() {
     }
     
     const page = getCurrentPage();
-    
     renderNavigation();
     renderSocialLinks();
     renderFooter();

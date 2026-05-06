@@ -10,17 +10,17 @@
   },
   "social": {
     "github": "https://github.com/maximilianfuksik-dev",
-    "linkedin": "https://linkedin.com/in/dein-profil",
+    "linkedin": "https://www.linkedin.com/in/maximilian-fuksik-268462314/",
     "email": "maximilianfuksik@gmail.com"
   },
   "navigation": {
-    "home": "index.html",
-    "about": "about.html",
-    "cv": "cv.html",
-    "certificates": "certificate.html",
-    "projects": "project.html",
-    "contact": "contact.html",
-    "more": "more.html"
+    "home": { "path": "index.html", "label": "Startseite" },
+    "about": { "path": "about.html", "label": "Über mich" },
+    "cv": { "path": "cv.html", "label": "Lebenslauf" },
+    "certificates": { "path": "certificate.html", "label": "Zertifikate" },
+    "projects": { "path": "project.html", "label": "Projekte" },
+    "contact": { "path": "contact.html", "label": "Kontakt" },
+    "more": { "path": "more.html", "label": "Mehr" }
   },
   "footer": {
     "impressum": "legalnotice.html",

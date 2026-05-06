@@ -14,13 +14,13 @@
     "email": "maximilianfuksik@gmail.com"
   },
   "navigation": {
-    "home": "index.html",
-    "about": "about.html",
-    "cv": "cv.html",
-    "certificates": "certificate.html",
-    "projects": "project.html",
-    "contact": "contact.html",
-    "more": "more.html"
+    "home": { "path": "index.html", "label": "Home" },
+    "about": { "path": "about.html", "label": "About" },
+    "cv": { "path": "cv.html", "label": "CV" },
+    "certificates": { "path": "certificate.html", "label": "Certificates" },
+    "projects": { "path": "project.html", "label": "Projects" },
+    "contact": { "path": "contact.html", "label": "Contact" },
+    "more": { "path": "more.html", "label": "More" }
   },
   "footer": {
     "impressum": "legalnotice.html",

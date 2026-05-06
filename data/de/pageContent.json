@@ -1,30 +1,30 @@
 {
-  "index": {
-    "welcome": {
-      "title": "Hallo, ich bin Maximilian",
-      "text": "Früher war ich im Vertrieb, doch die IT hat mich schon immer fasziniert. Mit der Umschulung kam dann die Leidenschaft für Hardware und Technik dazu. Klingt ungewöhnlich? Vielleicht. Aber es fühlt sich richtig an."
+"index": {
+  "welcome": {
+    "title": "Hi, ich bin Maximilian",
+    "text": "Ich suche ein IT-Praktikum.\n\nDiese Seite ist kein Standard-Lebenslauf, ich möchte zeigen, was ich kann. Gebaut mit HTML, CSS, JavaScript, Mehrsprachigkeit und allem, was dazu gehört.\n\nBin ich schon Profi? Nein. Aber ich habe Bock, lerne schnell und will endlich in die IT rein.\n\nSchau dich um. Vielleicht passt es ja."
+  },
+  "aboutSections": [
+    {
+      "title": "Sicherheit hat mich schon immer interessiert",
+      "text": "Schon bevor ich programmieren konnte, hat mich die Frage fasziniert: Wie schützt man Daten?",
+      "image": "office-9582092_1920.png",
+      "imageAlt": "Sicherheitsdenken"
     },
-    "aboutSections": [
-      {
-        "title": "Sicherheit interessiert mich schon länger",
-        "text": "Schon bevor ich wusste, wie man programmiert, hat mich die Frage beschäftigt: Wie schützt man eigentlich Daten? Wie denken Angreifer? Was sind die Schwachstellen? Ich habe mich reingelesen, Artikel gesucht, Reportagen geschaut. Richtig anfassen konnte ich es damals aber noch nicht.",
-        "image": "office-9582092_1920.png",
-        "imageAlt": "Sicherheitsdenken"
-      },
-      {
-        "title": "Durch die Umschulung kam die Technik dazu",
-        "text": "Mit der Umschulung hat sich dann eine ganz neue Welt aufgetan: Programmieren, Netzwerke, Server – und irgendwann auch Hardware. Ein Raspberry Pi hier, ein Temperatursensor da. Ich habe angefangen zu verstehen, wie das alles wirklich funktioniert. Das Basteln hat mich gepackt. Auch wenn ich noch am Anfang stehe: Es macht mir richtig Spaß, Dinge selbst zu bauen.",
-        "image": "network-197303_1920.jpg",
-        "imageAlt": "Hardware und Technik",
-        "reverse": true
-      },
-      {
-        "title": "Beides zusammen ergibt für mich Sinn",
-        "text": "Je mehr ich von Technik verstehe, desto klarer wird mir: Sicherheit ist kein Extra, sondern ein Teil von allem. Ich möchte beides verbinden – das Basteln an Systemen und den Blick für ihre Schwachstellen. Einfach nur programmieren oder einfach nur Sicherheit reicht mir nicht. Ich will verstehen, wie etwas funktioniert und wie man es schützt.",
-        "image": "computer-2162153_1920.jpg",
-        "imageAlt": "Technik und Sicherheit"
-      }
-    ],
+    {
+      "title": "Mit der Umschulung kam die Technik dazu",
+      "text": "Durch die Umschulung habe ich Programmieren, Netzwerke und Hardware für mich entdeckt – und das Basteln packt mich.",
+      "image": "network-197303_1920.jpg",
+      "imageAlt": "Hardware und Technik",
+      "reverse": true
+    },
+    {
+      "title": "Beides zusammen ergibt für mich Sinn",
+      "text": "Ich will Systeme bauen und verstehen, wie man sie schützt – beides gehört für mich zusammen.",
+      "image": "computer-2162153_1920.jpg",
+      "imageAlt": "Technik und Sicherheit"
+    }
+  ],
     "gallery": {
       "title": "Einblicke in meine Webseite",
       "images": [
@@ -36,12 +36,12 @@
       ]
     }
   },
-  "about": {
-    "title": "Über mich",
-    "image1": "watermarked-e2468cd0-22a6-413a-8e14-d082a659f847.jpg",
-    "image2": "",
-    "text": "Geboren in Waldbröl, heute zu Hause in Castrop-Rauxel. Ich trage die bodenständigen Werte Westfalens in mir – und das Ruhrgebiet hat mich geprägt.\n\nMein Weg führte mich durch die Region: von der Automobilausbildung in Ascheberg über Kundenberatung bei Avedo und Kikxxl bis zur Selbstständigkeit bei Tecis, wo ich erste Führungserfahrung sammeln und Vertriebsprojekte leiten durfte.\n\nDort habe ich gelernt, was wirklich zählt: Menschen verstehen, Bedürfnisse erkennen und Lösungen finden – auch wenn es mal nicht nach Plan läuft.\n\nDiese Erfahrung nehme ich jetzt mit in meine neue Welt: die der Programmierung. Meine Umschulung zum Fachinformatiker ist keine Richtungsänderung. Sie ist eine Weiterentwicklung. Ich verbinde Service-Denken mit Code-Kompetenz, um Brücken zu bauen – zwischen Mensch und Technik.\n\nIn der Natur Westfalens, beim konzentrierten Bogenschießen oder beim Gitarrespielen finde ich die Balance, die mich auch beim Programmieren leitet: Geduld, Präzision und den Mut, Neues zu schaffen. Und dann ist da noch die Hardware – Raspberry Pi, Sensoren, kleine Server. Seit der Umschulung hat mich das Basteln gepackt. Auch wenn ich noch am Anfang stehe: Es macht mir richtig Spaß, Dinge selbst zu bauen.\n\nMein Ziel ist klar: Ich will digitale Lösungen gestalten, die nicht nur technisch sauber sind, sondern auch menschlich sinnvoll. Eine Synthese aus westfälischer Bodenständigkeit, digitaler Neugier und dem Blick für Sicherheit – denn das eine geht für mich nicht ohne das andere."
-  },
+"about": {
+  "title": "Über mich",
+  "image1": "watermarked-e2468cd0-22a6-413a-8e14-d082a659f847.jpg",
+  "image2": "",
+  "text": "Geboren in Waldbröl, zu Hause in Castrop-Rauxel. Westfälische Bodenständigkeit trifft Ruhrgebiet-Power.\n\nVom Automobilbereich über Vertrieb bis zur IT – mein Weg war nicht gerade, aber er hat mich geprägt. Bei Tecis habe ich gelernt, Menschen zu verstehen, Bedürfnisse zu erkennen und Lösungen zu finden. Auch wenn es mal nicht nach Plan läuft.\n\nDiese Erfahrung nehme ich jetzt mit in meine neue Welt: die der Technik.\n\nSchon bevor ich programmieren konnte, hat mich eine Frage fasziniert: Wie schützt man Daten? Sicherheit war für mich immer ein Thema. Mit der Umschulung zum Fachinformatiker kam dann die ganze Bandbreite dazu: Programmieren, Netzwerke, Server – und irgendwann auch Hardware. Ein Raspberry Pi hier, ein Temperatursensor da. Das Basteln hat mich gepackt.\n\nUnd je mehr ich von Technik verstehe, desto klarer wird mir: Sicherheit ist kein Extra, sondern ein Teil von allem. Ich will Systeme bauen und verstehen, wie man sie schützt – beides gehört für mich zusammen.\n\nMeine Umschulung ist keine Richtungsänderung. Sie ist eine Weiterentwicklung. Ich verbinde Service-Denken aus dem Vertrieb mit Code-Kompetenz, um Brücken zu bauen – zwischen Mensch und Technik.\n\nIn der Natur Westfalens, beim konzentrierten Bogenschießen oder beim Gitarrespielen finde ich die Balance, die mich auch beim Programmieren leitet: Geduld, Präzision und den Mut, Neues zu schaffen.\n\nMein Ziel ist klar: Ich will digitale Lösungen gestalten, die nicht nur technisch sauber sind, sondern auch menschlich sinnvoll. Eine Synthese aus westfälischer Bodenständigkeit, digitaler Neugier und dem Blick für Sicherheit."
+},
   "cvPage": {
     "searchTitle": "Suche",
     "linksTitle": "Links",

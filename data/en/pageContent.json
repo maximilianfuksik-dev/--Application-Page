@@ -1,30 +1,30 @@
 {
-  "index": {
-    "welcome": {
-      "title": "Hello, I'm Maximilian",
-      "text": "I used to work in sales, but IT has always fascinated me. The retraining then brought a passion for hardware and technology. Sounds unusual? Maybe. But it feels right."
+"index": {
+  "welcome": {
+    "title": "Hi, I'm Maximilian",
+    "text": "I'm looking for an IT internship.\n\nThis page isn't a standard resume – I want to show what I can do. Built with HTML, CSS, JavaScript, multi-language support, and everything that comes with it.\n\nAm I a pro yet? No. But I'm motivated, I learn fast, and I really want to get into IT.\n\nTake a look around. Maybe it's a good fit."
+  },
+  "aboutSections": [
+    {
+      "title": "Security has always interested me",
+      "text": "Even before I could code, I was fascinated by one question: How do you protect data?",
+      "image": "office-9582092_1920.png",
+      "imageAlt": "Security thinking"
     },
-    "aboutSections": [
-      {
-        "title": "Security has interested me for a while",
-        "text": "Even before I knew how to program, I was thinking about: How do you protect data? How do attackers think? What are the vulnerabilities? I read into it, searched for articles, watched reports. But I couldn't really get my hands on it back then.",
-        "image": "office-9582092_1920.png",
-        "imageAlt": "Security thinking"
-      },
-      {
-        "title": "Retraining brought technology into the mix",
-        "text": "With retraining, a whole new world opened up: programming, networks, servers – and eventually hardware. A Raspberry Pi here, a temperature sensor there. I started to understand how it all really works. Tinkering has hooked me. Even though I'm still at the beginning, I really enjoy building things myself.",
-        "image": "network-197303_1920.jpg",
-        "imageAlt": "Hardware and technology",
-        "reverse": true
-      },
-      {
-        "title": "Combining both makes sense to me",
-        "text": "The more I understand about technology, the clearer it becomes: security is not an extra, but part of everything. I want to combine both – tinkering with systems and having an eye for their vulnerabilities. Just programming or just security isn't enough for me. I want to understand how something works and how to protect it.",
-        "image": "computer-2162153_1920.jpg",
-        "imageAlt": "Technology and security"
-      }
-    ],
+    {
+      "title": "The retraining opened up technology for me",
+      "text": "The retraining introduced me to coding, networks, and hardware – and I love building things.",
+      "image": "network-197303_1920.jpg",
+      "imageAlt": "Hardware and technology",
+      "reverse": true
+    },
+    {
+      "title": "Both together just make sense",
+      "text": "I want to build systems and understand how to protect them – for me, both belong together.",
+      "image": "computer-2162153_1920.jpg",
+      "imageAlt": "Technology and security"
+    }
+  ],
     "gallery": {
       "title": "Insights into my Website",
       "images": [
@@ -36,12 +36,12 @@
       ]
     }
   },
-  "about": {
-    "title": "About Me",
-    "image1": "watermarked-e2468cd0-22a6-413a-8e14-d082a659f847.jpg",
-    "image2": "",
-    "text": "Born in Waldbröl, now at home in Castrop-Rauxel. I carry the down-to-earth values of Westphalia within me – and the Ruhr area has shaped me.\n\nMy path led me through the region: from automotive training in Ascheberg to customer consulting at Avedo and Kikxxl, to self-employment at Tecis, where I gained my first leadership experience and was able to lead sales projects.\n\nThere I learned what really counts: understanding people, recognizing needs and finding solutions – even when things don't go according to plan.\n\nI am now taking this experience with me into my new world: that of programming. My retraining as an IT specialist is not a change of direction. It is a development. I combine service thinking with coding skills to build bridges – between people and technology.\n\nIn the nature of Westphalia, during concentrated archery or playing guitar, I find the balance that also guides me in programming: patience, precision and the courage to create something new. And then there's the hardware – Raspberry Pi, sensors, small servers. Since retraining, tinkering has hooked me. Even though I'm still at the beginning, I really enjoy building things myself.\n\nMy goal is clear: I want to design digital solutions that are not only technically clean, but also humanly meaningful. A synthesis of Westphalian down-to-earthness, digital curiosity and an eye for security – because for me, one cannot exist without the other."
-  },
+"about": {
+  "title": "About Me",
+  "image1": "watermarked-e2468cd0-22a6-413a-8e14-d082a659f847.jpg",
+  "image2": "",
+  "text": "Born in Waldbröl, at home in Castrop-Rauxel. Westphalian down-to-earthness meets Ruhr area energy.\n\nFrom automotive to sales to IT – my path wasn't straight, but it shaped me. At Tecis, I learned to understand people, recognize needs, and find solutions. Even when things don't go as planned.\n\nI'm taking that experience into my new world: technology.\n\nEven before I could code, I was fascinated by one question: How do you protect data? Security has always interested me. The retraining as an IT specialist opened up the whole spectrum: coding, networks, servers – and eventually hardware. A Raspberry Pi here, a temperature sensor there. Building things got me hooked.\n\nAnd the more I understand about technology, the clearer it becomes: security isn't an extra – it's part of everything. I want to build systems and understand how to protect them – for me, both belong together.\n\nMy retraining isn't a change of direction. It's an evolution. I combine service-minded thinking from sales with coding skills to build bridges – between people and technology.\n\nIn the nature of Westphalia, while focused on archery or playing guitar, I find the balance that also guides me in programming: patience, precision, and the courage to create something new.\n\nMy goal is clear: I want to create digital solutions that are not only technically clean but also humanly meaningful. A synthesis of Westphalian down-to-earthness, digital curiosity, and an eye for security."
+},
   "cvPage": {
     "searchTitle": "Search",
     "linksTitle": "Links",
